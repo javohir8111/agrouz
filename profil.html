@@ -1,374 +1,251 @@
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <title>AgroMind — Profil</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .hero {
-            background: linear-gradient(155deg, #071A0E, #1F6B3C);
-            padding: 24px 18px 44px;
-            position: relative;
-            overflow: hidden;
-            color: #fff;
-        }
-        
-        .hero-c1 {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: rgba(58, 173, 101, .12);
-            right: -40px;
-            top: -40px;
-        }
-        
-        .hero-c2 {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: rgba(14, 46, 26, .3);
-            left: -20px;
-            bottom: 20px;
-        }
-        
-        .hero-av {
-            width: 68px;
-            height: 68px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, .2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-size: 28px;
-            font-weight: 800;
-            border: 2px solid rgba(255, 255, 255, .25);
-            flex-shrink: 0;
-        }
-        
-        .hero-stats {
-            display: flex;
-            background: rgba(0, 0, 0, .2);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-top: 18px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-stat {
-            flex: 1;
-            padding: 13px;
-            text-align: center;
-        }
-        
-        .hero-stat+.hero-stat {
-            border-left: 1px solid rgba(255, 255, 255, .12);
-        }
-        
-        .plan-card {
-            background: linear-gradient(140deg, #0E2E1A, #1F6B3C);
-            border-radius: var(--r-xl);
-            padding: 20px;
-            color: #fff;
-        }
-        
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 0;
-            border-bottom: 1.5px solid var(--n100);
-            cursor: pointer;
-            transition: var(--ease);
-        }
-        
-        .menu-item:last-child {
-            border: none
-        }
-        
-        .menu-item:active {
-            opacity: .6
-        }
-        
-        .menu-ic {
-            width: 38px;
-            height: 38px;
-            border-radius: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AgroMind — Profil</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.hero {
+  background:linear-gradient(155deg,#071A0E,#1F6B3C);
+  padding:24px 18px 44px;
+  position:relative; overflow:hidden; color:#fff;
+}
+.hero-c1 { position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(58,173,101,.12);right:-40px;top:-40px; }
+.hero-c2 { position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(14,46,26,.3);left:-20px;bottom:20px; }
+.hero-av {
+  width:68px;height:68px;border-radius:20px;
+  background:rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:28px;font-weight:800;
+  border:2px solid rgba(255,255,255,.25); flex-shrink:0;
+}
+.hero-stats { display:flex;background:rgba(0,0,0,.2);border-radius:16px;overflow:hidden;margin-top:18px;position:relative;z-index:1; }
+.hero-stat { flex:1;padding:13px;text-align:center; }
+.hero-stat + .hero-stat { border-left:1px solid rgba(255,255,255,.12); }
+.plan-card {
+  background:linear-gradient(140deg,#0E2E1A,#1F6B3C);
+  border-radius:var(--r-xl); padding:20px; color:#fff;
+}
+.menu-item {
+  display:flex;align-items:center;gap:12px;
+  padding:14px 0;border-bottom:1.5px solid var(--n100);
+  cursor:pointer; transition:var(--ease);
+}
+.menu-item:last-child{border:none}
+.menu-item:active{opacity:.6}
+.menu-ic {width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+</style>
+<!-- MOBILE FIX --><style>
+html,body{width:100%;margin:0;padding:0;overflow-x:hidden;}
+#app{width:100%;max-width:100%;margin:0;padding:0;}
+@media(min-width:500px){body{display:flex;justify-content:center;background:#F6F8FA;}#app{max-width:430px;box-shadow:0 0 80px rgba(0,0,0,.18);}}
+</style><!-- END MOBILE FIX -->
 </head>
-
 <body>
-    <div id="app">
+<div id="app">
 
-        <div class="page active" id="pg-profil">
-            <div class="topbar">
-                <button class="tb-btn" onclick="goPage('dashboard.html')">&#8592;</button>
-                <div class="topbar-logo">👤 Profil</div>
-                <button class="tb-btn" onclick="openSheet('prof-edit')">✏️</button>
-            </div>
+<div class="page active" id="pg-profil">
+  <div class="topbar">
+    <button class="tb-btn" onclick="goPage('dashboard.html')">&#8592;</button>
+    <div class="topbar-logo">👤 Profil</div>
+    <button class="tb-btn" onclick="openSheet('prof-edit')">✏️</button>
+  </div>
 
-            <div class="scroll">
-                <div class="hero">
-                    <div class="hero-c1"></div>
-                    <div class="hero-c2"></div>
-                    <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:1">
-                        <div class="hero-av">A</div>
-                        <div>
-                            <div style="font-family:var(--font-display);font-size:22px;font-weight:800">Alisher Karimov</div>
-                            <div style="font-size:13px;opacity:.7;font-weight:600;margin-top:2px">📍 Toshkent viloyati</div>
-                            <div style="margin-top:8px;display:flex;gap:6px">
-                                <span class="badge" style="background:rgba(255,255,255,.18);color:#fff">⭐ O'rta</span>
-                                <span class="badge" style="background:rgba(255,255,255,.18);color:#fff">🥉 #3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <div style="font-family:var(--font-display);font-size:22px;font-weight:800">12.5</div>
-                            <div style="font-size:10px;opacity:.65;font-weight:700">Gektar</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div style="font-family:var(--font-display);font-size:22px;font-weight:800">1,050</div>
-                            <div style="font-size:10px;opacity:.65;font-weight:700">Reyting</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div style="font-family:var(--font-display);font-size:22px;font-weight:800">42%</div>
-                            <div style="font-size:10px;opacity:.65;font-weight:700">Tejash</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div style="font-family:var(--font-display);font-size:22px;font-weight:800">98</div>
-                            <div style="font-size:10px;opacity:.65;font-weight:700">Javoblar</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background:#fff;border-radius:var(--r-xl) var(--r-xl) 0 0;margin-top:-20px;padding:20px 16px 0">
-                    <div class="sec-hd">
-                        <div class="sec-title">🌾 Maydonlarim</div><span class="sec-link">Hammasi</span></div>
-                    <div class="card" style="margin-bottom:10px">
-                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
-                            <div>
-                                <div style="font-size:15px;font-weight:800">Asosiy maydon</div>
-                                <div style="font-size:12px;color:var(--n400);margin-top:2px">12.5 ga · Pomidor, Bodring</div>
-                            </div>
-                            <span class="badge bg">Faol</span>
-                        </div>
-                        <div class="prog-wrap">
-                            <div class="prog-fill" style="width:87%;background:linear-gradient(90deg,var(--g500),var(--g300))"></div>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;margin-top:5px">
-                            <div style="font-size:11px;color:var(--n400);font-weight:700">Hosil sog'lig'i</div>
-                            <div style="font-size:11px;font-weight:800;color:var(--g500)">87%</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-outline" style="margin-bottom:16px">+ Yangi maydon qo'shish</button>
-                </div>
-
-                <div class="sec">
-                    <div class="sec-hd">
-                        <div class="sec-title">⚙️ Sozlamalar</div>
-                    </div>
-                    <div class="card">
-                        <div class="tgl-wrap">
-                            <div>
-                                <div style="font-size:14px;font-weight:800">🔔 Bildirishnomalar</div>
-                                <div style="font-size:12px;color:var(--n400)">Sug'orish va ogohlantirishlar</div>
-                            </div>
-                            <div class="tgl on"></div>
-                        </div>
-                        <div class="div"></div>
-                        <div class="tgl-wrap">
-                            <div>
-                                <div style="font-size:14px;font-weight:800">📊 Haftalik hisobot</div>
-                                <div style="font-size:12px;color:var(--n400)">Har dushanba emailga</div>
-                            </div>
-                            <div class="tgl on"></div>
-                        </div>
-                        <div class="div"></div>
-                        <div class="tgl-wrap">
-                            <div>
-                                <div style="font-size:14px;font-weight:800">🌙 Tun rejimi</div>
-                                <div style="font-size:12px;color:var(--n400)">Ko'z uchun qulay</div>
-                            </div>
-                            <div class="tgl"></div>
-                        </div>
-                        <div class="div"></div>
-                        <div class="tgl-wrap">
-                            <div>
-                                <div style="font-size:14px;font-weight:800">📍 Joylashuv</div>
-                                <div style="font-size:12px;color:var(--n400)">Aniq ob-havo uchun</div>
-                            </div>
-                            <div class="tgl on"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sec">
-                    <div class="sec-hd">
-                        <div class="sec-title">🔗 Boshqa</div>
-                    </div>
-                    <div class="card" style="padding:4px 16px">
-                        <div class="menu-item" onclick="openSheet('lang-sheet')">
-                            <div class="menu-ic" style="background:var(--b100)">🌍</div>
-                            <div>
-                                <div style="font-size:14px;font-weight:800">Til sozlamalari</div>
-                                <div style="font-size:12px;color:var(--n400)">Hozir: O'zbek</div>
-                            </div>
-                            <div style="color:var(--n300);font-size:18px;margin-left:auto">›</div>
-                        </div>
-                        <div class="menu-item" onclick="openSheet('about-sheet')">
-                            <div class="menu-ic" style="background:var(--n100)">ℹ️</div>
-                            <div>
-                                <div style="font-size:14px;font-weight:800">Ilova haqida</div>
-                                <div style="font-size:12px;color:var(--n400)">Versiya 1.0.0 Beta</div>
-                            </div>
-                            <div style="color:var(--n300);font-size:18px;margin-left:auto">›</div>
-                        </div>
-                        <div class="menu-item" style="border:none">
-                            <div class="menu-ic" style="background:var(--r100)">🚪</div>
-                            <div>
-                                <div style="font-size:14px;font-weight:800;color:var(--r500)">Chiqish</div>
-                                <div style="font-size:12px;color:var(--n400)">Hisobdan chiqish</div>
-                            </div>
-                            <div style="color:var(--n300);font-size:18px;margin-left:auto">›</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sec" style="padding-bottom:14px">
-                    <div class="sec-hd">
-                        <div class="sec-title">💳 Obuna rejasi</div>
-                    </div>
-                    <div class="plan-card">
-                        <div style="display:flex;justify-content:space-between;align-items:flex-start">
-                            <div>
-                                <div style="font-size:10px;opacity:.8;font-weight:800;letter-spacing:.1em">JORIY REJA</div>
-                                <div style="font-family:var(--font-display);font-size:28px;font-weight:800;margin-top:4px">O'rta</div>
-                                <div style="font-size:14px;opacity:.75;margin-top:3px;font-weight:700">$15 / oyiga</div>
-                            </div>
-                            <div style="background:rgba(255,255,255,.2);border-radius:14px;padding:10px 16px;text-align:center;border:1px solid rgba(255,255,255,.12)">
-                                <div style="font-family:var(--font-display);font-size:26px;font-weight:800">18</div>
-                                <div style="font-size:10px;opacity:.65;font-weight:700">kun qoldi</div>
-                            </div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:6px;margin:14px 0">
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.85"><span>✅</span>SuvAI + Sensor monitoring</div>
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.85"><span>✅</span>BozorNarx real-vaqt</div>
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.85"><span>✅</span>SkyView (oyda 4 marta)</div>
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.5"><span>❌</span>Drone monitoring</div>
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.5"><span>❌</span>Carbon credit</div>
-                        </div>
-                        <button class="btn" style="background:rgba(255,255,255,.18);color:#fff;border:1.5px solid rgba(255,255,255,.25)" onclick="openSheet('premium')">Premium ga o'tish ✨</button>
-                    </div>
-                </div>
-            </div>
+  <div class="scroll">
+    <div class="hero">
+      <div class="hero-c1"></div>
+      <div class="hero-c2"></div>
+      <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:1">
+        <div class="hero-av">A</div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800">Alisher Karimov</div>
+          <div style="font-size:13px;opacity:.7;font-weight:600;margin-top:2px">📍 Toshkent viloyati</div>
+          <div style="margin-top:8px;display:flex;gap:6px">
+            <span class="badge" style="background:rgba(255,255,255,.18);color:#fff">⭐ O'rta</span>
+            <span class="badge" style="background:rgba(255,255,255,.18);color:#fff">🥉 #3</span>
+          </div>
         </div>
-
-        <nav class="bottom-nav">
-            <button class="nav-btn" onclick="goPage('dashboard.html')"><span class="ni">🏠</span><span class="nl">Bosh</span></button>
-            <button class="nav-btn" onclick="goPage('suvai.html')"><span class="ni">💧</span><span class="nl">SuvAI</span></button>
-            <button class="nav-btn" onclick="goPage('bozor.html')"><span class="ni">📊</span><span class="nl">Bozor</span></button>
-            <button class="nav-btn" onclick="goPage('skyview.html')"><span class="ni">🛰️</span><span class="nl">Sky</span></button>
-            <button class="nav-btn" onclick="goPage('farmernet.html')"><span class="ni">👥</span><span class="nl">Hamjamiyat</span></button>
-        </nav>
-
-        <div class="overlay" id="ov-premium" onclick="closeSheet('premium')"></div>
-        <div class="sheet" id="sh-premium">
-            <div class="sheet-handle"></div>
-            <div class="sheet-title">✨ Premium reja</div>
-            <div style="text-align:center;padding:10px 0 20px">
-                <div style="font-size:48px;margin-bottom:8px">🚀</div>
-                <div style="font-family:var(--font-display);font-size:28px;font-weight:800">$40 / oy</div>
-                <div style="font-size:13px;color:var(--n400);margin-top:4px">Yoki $400/yil — 17% tejash</div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
-                <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">💧</span>Cheksiz sensor monitoring</div>
-                <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">🛰️</span>SkyView — kunlik yangilanish</div>
-                <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">🚁</span>Drone monitoring xizmati</div>
-                <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">📞</span>24/7 agronomon maslahat</div>
-            </div>
-            <button class="btn btn-g" onclick="closeSheet('premium')">Premium sotib olish</button>
-            <button class="btn btn-ghost" style="margin-top:8px" onclick="closeSheet('premium')">Keyinroq</button>
-        </div>
-
-        <div class="overlay" id="ov-prof-edit" onclick="closeSheet('prof-edit')"></div>
-        <div class="sheet" id="sh-prof-edit">
-            <div class="sheet-handle"></div>
-            <div class="sheet-title">✏️ Profilni tahrirlash</div>
-            <div class="inp-group"><label class="inp-label">ISM</label><input class="inp" value="Alisher"></div>
-            <div class="inp-group"><label class="inp-label">FAMILIYA</label><input class="inp" value="Karimov"></div>
-            <div class="inp-group"><label class="inp-label">VILOYAT</label><input class="inp" value="Toshkent viloyati"></div>
-            <div class="inp-group"><label class="inp-label">TELEFON</label><input class="inp" type="tel" value="+998 90 123 45 67"></div>
-            <button class="btn btn-g" onclick="closeSheet('prof-edit')">Saqlash ✓</button>
-        </div>
-
-        <div class="overlay" id="ov-lang-sheet" onclick="closeSheet('lang-sheet')"></div>
-        <div class="sheet" id="sh-lang-sheet">
-            <div class="sheet-handle"></div>
-            <div class="sheet-title">🌍 Til tanlash</div>
-            <div class="card" style="padding:6px 14px">
-                <div class="li" style="background:var(--g50);border-radius:10px;padding:12px 10px;margin:0 -2px"><span style="font-size:20px">🇺🇿</span>
-                    <div style="flex:1;font-weight:800;font-size:14px;margin-left:4px">O'zbek tili</div><span class="badge bg">✓</span></div>
-                <div class="li"><span style="font-size:20px">🇷🇺</span>
-                    <div style="flex:1;font-weight:800;font-size:14px;margin-left:4px">Rus tili</div>
-                </div>
-                <div class="li" style="border:none"><span style="font-size:20px">🇬🇧</span>
-                    <div style="flex:1;font-weight:800;font-size:14px;margin-left:4px">Ingliz tili</div>
-                </div>
-            </div>
-            <button class="btn btn-g" style="margin-top:14px" onclick="closeSheet('lang-sheet')">Saqlash</button>
-        </div>
-
-        <div class="overlay" id="ov-about-sheet" onclick="closeSheet('about-sheet')"></div>
-        <div class="sheet" id="sh-about-sheet">
-            <div class="sheet-handle"></div>
-            <div style="text-align:center;padding:10px 0 16px">
-                <div style="font-size:56px;margin-bottom:10px">🌾</div>
-                <div style="font-family:var(--font-display);font-size:24px;font-weight:800">AgroMind UZ</div>
-                <div style="font-size:13px;color:var(--n400);margin-top:4px">Versiya 1.0.0 Beta</div>
-            </div>
-            <div style="font-size:14px;color:var(--n600);line-height:1.75;text-align:center">O'zbekiston fermerlariga mo'ljallangan aqlli qishloq xo'jaligi platformasi.</div>
-            <div style="margin-top:14px;padding:14px;background:var(--n100);border-radius:14px;text-align:center">
-                <div style="font-size:12px;color:var(--n400);font-weight:700">© 2025 AgroMind UZ · Toshkent</div>
-            </div>
-            <button class="btn btn-ghost" style="margin-top:12px" onclick="closeSheet('about-sheet')">Yopish</button>
-        </div>
-
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div style="font-family:var(--font-display);font-size:22px;font-weight:800">12.5</div><div style="font-size:10px;opacity:.65;font-weight:700">Gektar</div></div>
+        <div class="hero-stat"><div style="font-family:var(--font-display);font-size:22px;font-weight:800">1,050</div><div style="font-size:10px;opacity:.65;font-weight:700">Reyting</div></div>
+        <div class="hero-stat"><div style="font-family:var(--font-display);font-size:22px;font-weight:800">42%</div><div style="font-size:10px;opacity:.65;font-weight:700">Tejash</div></div>
+        <div class="hero-stat"><div style="font-family:var(--font-display);font-size:22px;font-weight:800">98</div><div style="font-size:10px;opacity:.65;font-weight:700">Javoblar</div></div>
+      </div>
     </div>
-    <script src="js/app.js"></script>
-    <script>
-        function goPage(page) {
-            window.location.href = page;
-        }
 
-        function openSheet(id) {
-            var ov = document.getElementById('ov-' + id);
-            var sh = document.getElementById('sh-' + id);
-            if (ov) ov.classList.add('open');
-            if (sh) sh.classList.add('open');
-        }
+    <div style="background:#fff;border-radius:var(--r-xl) var(--r-xl) 0 0;margin-top:-20px;padding:20px 16px 0">
+      <div class="sec-hd"><div class="sec-title">🌾 Maydonlarim</div><span class="sec-link">Hammasi</span></div>
+      <div class="card" style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+          <div><div style="font-size:15px;font-weight:800">Asosiy maydon</div><div style="font-size:12px;color:var(--n400);margin-top:2px">12.5 ga · Pomidor, Bodring</div></div>
+          <span class="badge bg">Faol</span>
+        </div>
+        <div class="prog-wrap"><div class="prog-fill" style="width:87%;background:linear-gradient(90deg,var(--g500),var(--g300))"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:5px">
+          <div style="font-size:11px;color:var(--n400);font-weight:700">Hosil sog'lig'i</div>
+          <div style="font-size:11px;font-weight:800;color:var(--g500)">87%</div>
+        </div>
+      </div>
+      <button class="btn btn-outline" style="margin-bottom:16px">+ Yangi maydon qo'shish</button>
+    </div>
 
-        function closeSheet(id) {
-            var ov = document.getElementById('ov-' + id);
-            var sh = document.getElementById('sh-' + id);
-            if (ov) ov.classList.remove('open');
-            if (sh) sh.classList.remove('open');
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            initToggles();
-        });
-    </script>
+    <div class="sec">
+      <div class="sec-hd"><div class="sec-title">⚙️ Sozlamalar</div></div>
+      <div class="card">
+        <div class="tgl-wrap">
+          <div><div style="font-size:14px;font-weight:800">🔔 Bildirishnomalar</div><div style="font-size:12px;color:var(--n400)">Sug'orish va ogohlantirishlar</div></div>
+          <div class="tgl on"></div>
+        </div>
+        <div class="div"></div>
+        <div class="tgl-wrap">
+          <div><div style="font-size:14px;font-weight:800">📊 Haftalik hisobot</div><div style="font-size:12px;color:var(--n400)">Har dushanba emailga</div></div>
+          <div class="tgl on"></div>
+        </div>
+        <div class="div"></div>
+        <div class="tgl-wrap">
+          <div><div style="font-size:14px;font-weight:800">🌙 Tun rejimi</div><div style="font-size:12px;color:var(--n400)">Ko'z uchun qulay</div></div>
+          <div class="tgl"></div>
+        </div>
+        <div class="div"></div>
+        <div class="tgl-wrap">
+          <div><div style="font-size:14px;font-weight:800">📍 Joylashuv</div><div style="font-size:12px;color:var(--n400)">Aniq ob-havo uchun</div></div>
+          <div class="tgl on"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-hd"><div class="sec-title">🔗 Boshqa</div></div>
+      <div class="card" style="padding:4px 16px">
+        <div class="menu-item" onclick="openSheet('lang-sheet')">
+          <div class="menu-ic" style="background:var(--b100)">🌍</div>
+          <div><div style="font-size:14px;font-weight:800">Til sozlamalari</div><div style="font-size:12px;color:var(--n400)">Hozir: O'zbek</div></div>
+          <div style="color:var(--n300);font-size:18px;margin-left:auto">›</div>
+        </div>
+        <div class="menu-item" onclick="openSheet('about-sheet')">
+          <div class="menu-ic" style="background:var(--n100)">ℹ️</div>
+          <div><div style="font-size:14px;font-weight:800">Ilova haqida</div><div style="font-size:12px;color:var(--n400)">Versiya 1.0.0 Beta</div></div>
+          <div style="color:var(--n300);font-size:18px;margin-left:auto">›</div>
+        </div>
+        <div class="menu-item" style="border:none">
+          <div class="menu-ic" style="background:var(--r100)">🚪</div>
+          <div><div style="font-size:14px;font-weight:800;color:var(--r500)">Chiqish</div><div style="font-size:12px;color:var(--n400)">Hisobdan chiqish</div></div>
+          <div style="color:var(--n300);font-size:18px;margin-left:auto">›</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" style="padding-bottom:14px">
+      <div class="sec-hd"><div class="sec-title">💳 Obuna rejasi</div></div>
+      <div class="plan-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div style="font-size:10px;opacity:.8;font-weight:800;letter-spacing:.1em">JORIY REJA</div>
+            <div style="font-family:var(--font-display);font-size:28px;font-weight:800;margin-top:4px">O'rta</div>
+            <div style="font-size:14px;opacity:.75;margin-top:3px;font-weight:700">$15 / oyiga</div>
+          </div>
+          <div style="background:rgba(255,255,255,.2);border-radius:14px;padding:10px 16px;text-align:center;border:1px solid rgba(255,255,255,.12)">
+            <div style="font-family:var(--font-display);font-size:26px;font-weight:800">18</div>
+            <div style="font-size:10px;opacity:.65;font-weight:700">kun qoldi</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin:14px 0">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.85"><span>✅</span>SuvAI + Sensor monitoring</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.85"><span>✅</span>BozorNarx real-vaqt</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.85"><span>✅</span>SkyView (oyda 4 marta)</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.5"><span>❌</span>Drone monitoring</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;opacity:.5"><span>❌</span>Carbon credit</div>
+        </div>
+        <button class="btn" style="background:rgba(255,255,255,.18);color:#fff;border:1.5px solid rgba(255,255,255,.25)" onclick="openSheet('premium')">Premium ga o'tish ✨</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <button class="nav-btn" onclick="goPage('dashboard.html')"><span class="ni">🏠</span><span class="nl">Bosh</span></button>
+  <button class="nav-btn" onclick="goPage('suvai.html')"><span class="ni">💧</span><span class="nl">SuvAI</span></button>
+  <button class="nav-btn" onclick="goPage('bozor.html')"><span class="ni">📊</span><span class="nl">Bozor</span></button>
+  <button class="nav-btn" onclick="goPage('skyview.html')"><span class="ni">🛰️</span><span class="nl">Sky</span></button>
+  <button class="nav-btn" onclick="goPage('farmernet.html')"><span class="ni">👥</span><span class="nl">Hamjamiyat</span></button>
+</nav>
+
+<div class="overlay" id="ov-premium" onclick="closeSheet('premium')"></div>
+<div class="sheet" id="sh-premium">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">✨ Premium reja</div>
+  <div style="text-align:center;padding:10px 0 20px">
+    <div style="font-size:48px;margin-bottom:8px">🚀</div>
+    <div style="font-family:var(--font-display);font-size:28px;font-weight:800">$40 / oy</div>
+    <div style="font-size:13px;color:var(--n400);margin-top:4px">Yoki $400/yil — 17% tejash</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">💧</span>Cheksiz sensor monitoring</div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">🛰️</span>SkyView — kunlik yangilanish</div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">🚁</span>Drone monitoring xizmati</div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><span style="font-size:20px">📞</span>24/7 agronomon maslahat</div>
+  </div>
+  <button class="btn btn-g" onclick="closeSheet('premium')">Premium sotib olish</button>
+  <button class="btn btn-ghost" style="margin-top:8px" onclick="closeSheet('premium')">Keyinroq</button>
+</div>
+
+<div class="overlay" id="ov-prof-edit" onclick="closeSheet('prof-edit')"></div>
+<div class="sheet" id="sh-prof-edit">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">✏️ Profilni tahrirlash</div>
+  <div class="inp-group"><label class="inp-label">ISM</label><input class="inp" value="Alisher"></div>
+  <div class="inp-group"><label class="inp-label">FAMILIYA</label><input class="inp" value="Karimov"></div>
+  <div class="inp-group"><label class="inp-label">VILOYAT</label><input class="inp" value="Toshkent viloyati"></div>
+  <div class="inp-group"><label class="inp-label">TELEFON</label><input class="inp" type="tel" value="+998 90 123 45 67"></div>
+  <button class="btn btn-g" onclick="closeSheet('prof-edit')">Saqlash ✓</button>
+</div>
+
+<div class="overlay" id="ov-lang-sheet" onclick="closeSheet('lang-sheet')"></div>
+<div class="sheet" id="sh-lang-sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">🌍 Til tanlash</div>
+  <div class="card" style="padding:6px 14px">
+    <div class="li" style="background:var(--g50);border-radius:10px;padding:12px 10px;margin:0 -2px"><span style="font-size:20px">🇺🇿</span><div style="flex:1;font-weight:800;font-size:14px;margin-left:4px">O'zbek tili</div><span class="badge bg">✓</span></div>
+    <div class="li"><span style="font-size:20px">🇷🇺</span><div style="flex:1;font-weight:800;font-size:14px;margin-left:4px">Rus tili</div></div>
+    <div class="li" style="border:none"><span style="font-size:20px">🇬🇧</span><div style="flex:1;font-weight:800;font-size:14px;margin-left:4px">Ingliz tili</div></div>
+  </div>
+  <button class="btn btn-g" style="margin-top:14px" onclick="closeSheet('lang-sheet')">Saqlash</button>
+</div>
+
+<div class="overlay" id="ov-about-sheet" onclick="closeSheet('about-sheet')"></div>
+<div class="sheet" id="sh-about-sheet">
+  <div class="sheet-handle"></div>
+  <div style="text-align:center;padding:10px 0 16px">
+    <div style="font-size:56px;margin-bottom:10px">🌾</div>
+    <div style="font-family:var(--font-display);font-size:24px;font-weight:800">AgroMind UZ</div>
+    <div style="font-size:13px;color:var(--n400);margin-top:4px">Versiya 1.0.0 Beta</div>
+  </div>
+  <div style="font-size:14px;color:var(--n600);line-height:1.75;text-align:center">O'zbekiston fermerlariga mo'ljallangan aqlli qishloq xo'jaligi platformasi.</div>
+  <div style="margin-top:14px;padding:14px;background:var(--n100);border-radius:14px;text-align:center">
+    <div style="font-size:12px;color:var(--n400);font-weight:700">© 2025 AgroMind UZ · Toshkent</div>
+  </div>
+  <button class="btn btn-ghost" style="margin-top:12px" onclick="closeSheet('about-sheet')">Yopish</button>
+</div>
+
+</div>
+<script src="js/app.js"></script>
+<script>
+function goPage(page) { window.location.href = page; }
+function openSheet(id) {
+  var ov = document.getElementById('ov-' + id);
+  var sh = document.getElementById('sh-' + id);
+  if (ov) ov.classList.add('open');
+  if (sh) sh.classList.add('open');
+}
+function closeSheet(id) {
+  var ov = document.getElementById('ov-' + id);
+  var sh = document.getElementById('sh-' + id);
+  if (ov) ov.classList.remove('open');
+  if (sh) sh.classList.remove('open');
+}
+document.addEventListener('DOMContentLoaded', function() { initToggles(); });
+</script>
 </body>
-
 </html>
