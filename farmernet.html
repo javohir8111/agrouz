@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>AgroMind — FermerNet</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tf-card {
+            width: 148px;
+            background: var(--white);
+            border: 1.5px solid var(--n200);
+            border-radius: var(--r-lg);
+            padding: 16px 12px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .tf-card.me {
+            border-color: var(--g300);
+            background: var(--g50);
+        }
+        
+        .post-fab {
+            position: fixed;
+            bottom: calc(var(--nav-h) + 16px);
+            right: 50%;
+            transform: translateX(calc(var(--max-w) / 2 - 70px));
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(135deg, var(--g700), var(--g400));
+            border-radius: var(--r-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: var(--s-g);
+            z-index: 150;
+            cursor: pointer;
+            transition: var(--ease-spring);
+            border: none;
+        }
+        
+        .post-fab:active {
+            transform: translateX(calc(var(--max-w) / 2 - 70px)) scale(.9);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="page active" id="pg-farmernet">
+            <div class="topbar">
+                <button class="tb-btn" onclick="goPage('dashboard.html')">&#8592;</button>
+                <div>
+                    <div class="topbar-logo">👥 FermerNet</div>
+                    <div class="topbar-sub">Fermerlar hamjamiyati</div>
+                </div>
+                <button class="tb-btn" onclick="openSheet('fn-notif')">🔔</button>
+            </div>
+
+            <div class="scroll" style="padding-bottom:140px">
+                <div class="sec" style="padding-bottom:4px">
+                    <div class="sx" data-chip-group id="post-chips">
+                        <div class="chip on" data-chip="Barchasi" data-action="filterPosts">Barchasi</div>
+                        <div class="chip off" data-chip="Kasallik" data-action="filterPosts">🦠 Kasallik</div>
+                        <div class="chip off" data-chip="O'g'it" data-action="filterPosts">🌱 O'g'it</div>
+                        <div class="chip off" data-chip="Texnika" data-action="filterPosts">🚜 Texnika</div>
+                        <div class="chip off" data-chip="Narx" data-action="filterPosts">💰 Narx</div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">🏆 Top Fermerlar</div>
+                        <span class="sec-link" onclick="openSheet('leaderboard')">To'liq reyting</span>
+                    </div>
+                    <div class="sx">
+                        <div class="tf-card">
+                            <div style="font-size:26px">🥇</div>
+                            <div style="width:44px;height:44px;border-radius:12px;background:#FEF3C7;color:#B45309;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;margin:8px auto">M</div>
+                            <div style="font-size:13px;font-weight:800">Mansur Y.</div>
+                            <div style="font-size:11px;color:var(--n400)">Andijon</div>
+                            <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--g500);margin-top:8px">1,240 ⭐</div>
+                        </div>
+                        <div class="tf-card">
+                            <div style="font-size:26px">🥈</div>
+                            <div style="width:44px;height:44px;border-radius:12px;background:var(--n100);color:var(--n600);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;margin:8px auto">Z</div>
+                            <div style="font-size:13px;font-weight:800">Zafar M.</div>
+                            <div style="font-size:11px;color:var(--n400)">Namangan</div>
+                            <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--g500);margin-top:8px">1,180 ⭐</div>
+                        </div>
+                        <div class="tf-card me">
+                            <div style="font-size:26px">🥉</div>
+                            <div style="width:44px;height:44px;border-radius:12px;background:var(--g100);color:var(--g700);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;margin:8px auto">A</div>
+                            <div style="font-size:13px;font-weight:800">Siz 👋</div>
+                            <div style="font-size:11px;color:var(--n400)">Toshkent</div>
+                            <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--g500);margin-top:8px">1,050 ⭐</div>
+                        </div>
+                        <div class="tf-card">
+                            <div style="font-size:26px">4️⃣</div>
+                            <div style="width:44px;height:44px;border-radius:12px;background:var(--b100);color:var(--b600);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;margin:8px auto">B</div>
+                            <div style="font-size:13px;font-weight:800">Botir N.</div>
+                            <div style="font-size:11px;color:var(--n400)">Farg'ona</div>
+                            <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--g500);margin-top:8px">980 ⭐</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+                        <div class="stat" style="text-align:center;padding:12px 8px">
+                            <div class="stat-v" style="font-size:20px;color:var(--g500)">4,280</div>
+                            <div class="stat-l">Fermerlar</div>
+                        </div>
+                        <div class="stat" style="text-align:center;padding:12px 8px">
+                            <div class="stat-v" style="font-size:20px">12,640</div>
+                            <div class="stat-l">Savollar</div>
+                        </div>
+                        <div class="stat" style="text-align:center;padding:12px 8px">
+                            <div class="stat-v" style="font-size:20px;color:var(--b500)">98%</div>
+                            <div class="stat-l">Javob %</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec" style="padding-bottom:0">
+                    <div class="sec-hd">
+                        <div class="sec-title">📝 Savollar</div>
+                    </div>
+                </div>
+                <div style="padding:0 16px" id="post-list"></div>
+            </div>
+        </div>
+
+        <button class="post-fab" onclick="openSheet('new-post')">✏️</button>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn" onclick="goPage('dashboard.html')"><span class="ni">🏠</span><span class="nl">Bosh</span></button>
+            <button class="nav-btn" onclick="goPage('suvai.html')"><span class="ni">💧</span><span class="nl">SuvAI</span></button>
+            <button class="nav-btn" onclick="goPage('bozor.html')"><span class="ni">📊</span><span class="nl">Bozor</span></button>
+            <button class="nav-btn" onclick="goPage('skyview.html')"><span class="ni">🛰️</span><span class="nl">Sky</span></button>
+            <button class="nav-btn on" onclick="goPage('farmernet.html')"><span class="ni">👥</span><span class="nl">Hamjamiyat</span></button>
+        </nav>
+
+        <div class="overlay" id="ov-new-post" onclick="closeSheet('new-post')"></div>
+        <div class="sheet" id="sh-new-post">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">✏️ Yangi savol berish</div>
+            <div class="inp-group">
+                <label class="inp-label">KATEGORIYA</label>
+                <div class="sx" style="margin-top:4px">
+                    <div class="chip on">🦠 Kasallik</div>
+                    <div class="chip off">🌱 O'g'it</div>
+                    <div class="chip off">🚜 Texnika</div>
+                    <div class="chip off">💰 Narx</div>
+                </div>
+            </div>
+            <div class="inp-group">
+                <label class="inp-label">SAVOLINGIZ</label>
+                <textarea class="inp inp-ta" placeholder="Savolingizni batafsil yozing..."></textarea>
+            </div>
+            <div class="inp-group">
+                <label class="inp-label">TEGLAR</label>
+                <input class="inp" placeholder="#pomidor #kasallik ...">
+            </div>
+            <button class="btn btn-g" onclick="closeSheet('new-post')">Yuborish 🚀</button>
+        </div>
+
+        <div class="overlay" id="ov-leaderboard" onclick="closeSheet('leaderboard')"></div>
+        <div class="sheet" id="sh-leaderboard">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">🏆 To'liq reyting</div>
+            <div class="card" style="padding:4px 14px">
+                <div class="li"><span style="font-size:22px">🥇</span>
+                    <div class="av" style="background:#FEF3C7;color:#B45309;border-radius:10px;font-size:14px">M</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Mansur Yusupov</div>
+                        <div style="font-size:11px;color:var(--n400)">Andijon</div>
+                    </div>
+                    <div style="font-family:var(--font-display);font-weight:800;color:var(--g500)">1,240</div>
+                </div>
+                <div class="li"><span style="font-size:22px">🥈</span>
+                    <div class="av" style="background:var(--n100);color:var(--n600);border-radius:10px;font-size:14px">Z</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Zafar Mirzaev</div>
+                        <div style="font-size:11px;color:var(--n400)">Namangan</div>
+                    </div>
+                    <div style="font-family:var(--font-display);font-weight:800;color:var(--g500)">1,180</div>
+                </div>
+                <div class="li" style="background:var(--g50);border-radius:12px;padding:12px 10px;margin:2px -2px"><span style="font-size:22px">🥉</span>
+                    <div class="av" style="background:var(--g100);color:var(--g700);border-radius:10px;font-size:14px">A</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Alisher (SIZ)</div>
+                        <div style="font-size:11px;color:var(--g500)">Toshkent</div>
+                    </div>
+                    <div style="font-family:var(--font-display);font-weight:800;color:var(--g500)">1,050</div>
+                </div>
+                <div class="li"><span style="font-size:22px;color:var(--n400)">4</span>
+                    <div class="av" style="background:var(--b100);color:var(--b600);border-radius:10px;font-size:14px">B</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Botir Nazarov</div>
+                        <div style="font-size:11px;color:var(--n400)">Farg'ona</div>
+                    </div>
+                    <div style="font-family:var(--font-display);font-weight:800;color:var(--n600)">980</div>
+                </div>
+                <div class="li" style="border:none"><span style="font-size:22px;color:var(--n400)">5</span>
+                    <div class="av" style="background:#EDE9FE;color:#7C3AED;border-radius:10px;font-size:14px">G</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Gulnora Hasanova</div>
+                        <div style="font-size:11px;color:var(--n400)">Samarqand</div>
+                    </div>
+                    <div style="font-family:var(--font-display);font-weight:800;color:var(--n600)">870</div>
+                </div>
+            </div>
+            <button class="btn btn-ghost" style="margin-top:14px" onclick="closeSheet('leaderboard')">Yopish</button>
+        </div>
+
+        <div class="overlay" id="ov-fn-notif" onclick="closeSheet('fn-notif')"></div>
+        <div class="sheet" id="sh-fn-notif">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">🔔 FermerNet xabarlari</div>
+            <div class="card" style="padding:6px 16px">
+                <div class="li">
+                    <div class="av" style="background:var(--b100);color:var(--b600);border-radius:10px;font-size:14px">B</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Behruz javob berdi</div>
+                        <div style="font-size:12px;color:var(--n400)">1 soat oldin</div>
+                    </div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:var(--b400)"></div>
+                </div>
+                <div class="li">
+                    <div class="av" style="background:var(--g100);color:var(--g600);border-radius:10px;font-size:14px">D</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Dilshod yoqtirdi</div>
+                        <div style="font-size:12px;color:var(--n400)">3 soat oldin</div>
+                    </div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:var(--r400)"></div>
+                </div>
+                <div class="li" style="border:none">
+                    <div class="av" style="background:var(--y100);color:var(--y500);border-radius:10px;font-size:14px">S</div>
+                    <div style="flex:1">
+                        <div style="font-weight:800">Sardor traktorni tasdiqlamoqda</div>
+                        <div style="font-size:12px;color:var(--n400)">Kecha</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-ghost" style="margin-top:14px" onclick="closeSheet('fn-notif')">Ko'rildi</button>
+        </div>
+
+    </div>
+    <script src="js/app.js"></script>
+    <script>
+        function goPage(page) {
+            window.location.href = page;
+        }
+
+        function openSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.add('open');
+            if (sh) sh.classList.add('open');
+        }
+
+        function closeSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.remove('open');
+            if (sh) sh.classList.remove('open');
+        }
+
+        function filterPosts(cat) {
+            renderPosts(cat);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPosts('Barchasi');
+            initChips();
+        });
+    </script>
+</body>
+
+</html>

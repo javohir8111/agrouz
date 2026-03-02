@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>AgroMind — BozorNarx</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ai-banner {
+            background: linear-gradient(140deg, #0E2E1A, #228B4A);
+            border-radius: var(--r-xl);
+            padding: 20px;
+            color: #fff;
+        }
+        
+        .live-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--g500);
+            background: var(--g50);
+            padding: 4px 10px;
+            border-radius: var(--r-full);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="page active" id="pg-bozor">
+            <div class="topbar">
+                <button class="tb-btn" onclick="goPage('dashboard.html')">&#8592;</button>
+                <div>
+                    <div class="topbar-logo">📊 BozorNarx</div>
+                    <div class="topbar-sub">Real-vaqt bozor narxlari</div>
+                </div>
+                <button class="tb-btn" onclick="openSheet('search-price')">🔍</button>
+            </div>
+
+            <div class="scroll">
+                <div class="sec">
+                    <div class="ai-banner">
+                        <div style="font-size:10px;opacity:.65;font-weight:800;letter-spacing:.1em;margin-bottom:10px">🤖 AI TAVSIYASI — BUGUN</div>
+                        <div style="display:flex;align-items:center;gap:12px">
+                            <div style="font-size:48px">🥒</div>
+                            <div>
+                                <div style="font-family:var(--font-display);font-size:22px;font-weight:800">Bodring ekishni boshlang</div>
+                                <div style="font-size:12px;opacity:.8;margin-top:3px;font-weight:600">Narx +12.4% · 87% ishonch</div>
+                            </div>
+                            <div style="margin-left:auto;background:rgba(255,255,255,.15);border-radius:12px;padding:8px 13px;text-align:center;flex-shrink:0">
+                                <div style="font-family:var(--font-display);font-size:22px;font-weight:800">87%</div>
+                                <div style="font-size:10px;opacity:.65">ishonch</div>
+                            </div>
+                        </div>
+                        <div style="font-size:13px;opacity:.82;line-height:1.65;margin-top:12px;border-top:1px solid rgba(255,255,255,.15);padding-top:12px">Farg'ona va Toshkent bozorlarida bodring taklifi kamaymoqda. Tuproq tarkibingiz juda mos. Bu yil ekish tavsiya etiladi.</div>
+                    </div>
+                </div>
+
+                <div class="sec" style="padding-bottom:4px">
+                    <div class="sx" data-chip-group id="price-chips">
+                        <div class="chip on" data-chip="all" data-action="filterPrices">Barchasi</div>
+                        <div class="chip off" data-chip="up" data-action="filterPrices">↑ Oshayotganlar</div>
+                        <div class="chip off" data-chip="Toshkent">Toshkent</div>
+                        <div class="chip off" data-chip="Fargona">Farg'ona</div>
+                        <div class="chip off" data-chip="Samarqand">Samarqand</div>
+                    </div>
+                </div>
+
+                <div style="padding:8px 16px;display:flex;align-items:center;justify-content:space-between">
+                    <div style="font-size:12px;color:var(--n400);font-weight:600">🔄 5 daqiqa oldin yangilandi</div>
+                    <div class="live-dot">● Live</div>
+                </div>
+
+                <div style="padding:0 16px">
+                    <div class="card" style="padding:4px 16px">
+                        <div id="price-list"></div>
+                    </div>
+                </div>
+
+                <div class="sec" style="padding-bottom:14px">
+                    <div class="sec-hd">
+                        <div class="sec-title">📈 Haftalik trend</div><span class="badge bg">Bodring</span></div>
+                    <div class="card">
+                        <div style="display:flex;align-items:flex-end;gap:5px;height:80px">
+                            <div style="flex:1;background:var(--g100);height:42px;border-radius:4px 4px 0 0"></div>
+                            <div style="flex:1;background:var(--g200);height:52px;border-radius:4px 4px 0 0"></div>
+                            <div style="flex:1;background:var(--g200);height:48px;border-radius:4px 4px 0 0"></div>
+                            <div style="flex:1;background:var(--g300);height:60px;border-radius:4px 4px 0 0"></div>
+                            <div style="flex:1;background:var(--g400);height:66px;border-radius:4px 4px 0 0"></div>
+                            <div style="flex:1;background:var(--g400);height:70px;border-radius:4px 4px 0 0"></div>
+                            <div style="flex:1;background:var(--g500);height:80px;border-radius:4px 4px 0 0;box-shadow:var(--s-g)"></div>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;margin-top:6px">
+                            <span style="font-size:10px;color:var(--n400)">Du</span><span style="font-size:10px;color:var(--n400)">Se</span>
+                            <span style="font-size:10px;color:var(--n400)">Ch</span><span style="font-size:10px;color:var(--n400)">Pa</span>
+                            <span style="font-size:10px;color:var(--n400)">Ju</span><span style="font-size:10px;color:var(--n400)">Sh</span>
+                            <span style="font-size:10px;color:var(--g500);font-weight:800">Bu</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1.5px solid var(--n100)">
+                            <div>
+                                <div style="font-size:11px;color:var(--n400);font-weight:700">Hozirgi narx</div>
+                                <div style="font-family:var(--font-display);font-size:17px;font-weight:700">3,600 so'm/kg</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div style="font-size:11px;color:var(--n400);font-weight:700">O'tgan hafta</div>
+                                <div style="font-family:var(--font-display);font-size:17px;font-weight:700">3,200 so'm</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div style="font-size:11px;color:var(--n400);font-weight:700">O'sish</div>
+                                <div style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--g500)">+12.4%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn" onclick="goPage('dashboard.html')"><span class="ni">🏠</span><span class="nl">Bosh</span></button>
+            <button class="nav-btn" onclick="goPage('suvai.html')"><span class="ni">💧</span><span class="nl">SuvAI</span></button>
+            <button class="nav-btn on" onclick="goPage('bozor.html')"><span class="ni">📊</span><span class="nl">Bozor</span></button>
+            <button class="nav-btn" onclick="goPage('skyview.html')"><span class="ni">🛰️</span><span class="nl">Sky</span></button>
+            <button class="nav-btn" onclick="goPage('farmernet.html')"><span class="ni">👥</span><span class="nl">Hamjamiyat</span></button>
+        </nav>
+
+        <div class="overlay" id="ov-search-price" onclick="closeSheet('search-price')"></div>
+        <div class="sheet" id="sh-search-price">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">🔍 Ekin qidirish</div>
+            <div class="inp-group"><input class="inp" placeholder="Masalan: pomidor, bodring..."></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <span class="chip on">🍅 Pomidor</span>
+                <span class="chip off">🥒 Bodring</span>
+                <span class="chip off">🧅 Piyoz</span>
+                <span class="chip off">🥔 Kartoshka</span>
+                <span class="chip off">🥕 Sabzi</span>
+            </div>
+            <button class="btn btn-g" style="margin-top:16px" onclick="closeSheet('search-price')">Qidirish</button>
+        </div>
+
+    </div>
+    <script src="js/app.js"></script>
+    <script>
+        function goPage(page) {
+            window.location.href = page;
+        }
+
+        function openSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.add('open');
+            if (sh) sh.classList.add('open');
+        }
+
+        function closeSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.remove('open');
+            if (sh) sh.classList.remove('open');
+        }
+
+        function filterPrices(val) {
+            renderPrices(val);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPrices('all');
+            initChips();
+        });
+    </script>
+</body>
+
+</html>

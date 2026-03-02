@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>AgroMind — SkyView</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .sat-map {
+            height: 240px;
+            background: linear-gradient(160deg, #0D1F10, #1A3320);
+            border-radius: var(--r-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sat-badge {
+            position: absolute;
+            background: rgba(0, 0, 0, .55);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: var(--r-full);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        
+        .zone-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1.5px solid var(--n100);
+        }
+        
+        .zone-row:last-child {
+            border-bottom: none;
+        }
+        
+        .zone-sq {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .forecast-card {
+            background: linear-gradient(140deg, var(--b600), var(--b400));
+            border-radius: var(--r-xl);
+            padding: 22px;
+            color: #fff;
+        }
+        
+        .hist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1.5px solid var(--n100);
+        }
+        
+        .hist-item:last-child {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="page active" id="pg-skyview">
+            <div class="topbar">
+                <button class="tb-btn" onclick="goPage('dashboard.html')">&#8592;</button>
+                <div>
+                    <div class="topbar-logo">🛰️ SkyView</div>
+                    <div class="topbar-sub">Satellite monitoring</div>
+                </div>
+                <button class="tb-btn" onclick="openSheet('sky-info')">&#8505;</button>
+            </div>
+
+            <div class="scroll">
+                <div class="sec">
+                    <div class="sat-map">
+                        <svg width="100%" height="100%" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="240" fill="#0D1F10"/>
+          <line x1="0" y1="80" x2="400" y2="80" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <line x1="0" y1="160" x2="400" y2="160" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <line x1="133" y1="0" x2="133" y2="240" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <line x1="266" y1="0" x2="266" y2="240" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <rect x="35" y="25" width="145" height="100" rx="8" fill="#1F6B3C" opacity=".88"/>
+          <rect x="35" y="25" width="145" height="100" rx="8" fill="none" stroke="#3AAD65" stroke-width="2"/>
+          <rect x="200" y="25" width="160" height="100" rx="8" fill="#B45309" opacity=".72"/>
+          <rect x="200" y="25" width="160" height="100" rx="8" fill="none" stroke="#F59E0B" stroke-width="2"/>
+          <rect x="35" y="148" width="325" height="72" rx="8" fill="#991B1B" opacity=".75"/>
+          <rect x="35" y="148" width="325" height="72" rx="8" fill="none" stroke="#EF4444" stroke-width="2"/>
+          <text x="112" y="80" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">Zona A</text>
+          <text x="112" y="98" fill="rgba(255,255,255,.65)" font-size="11" text-anchor="middle" font-family="sans-serif">NDVI: 0.78</text>
+          <text x="280" y="80" fill="white" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">Zona B</text>
+          <text x="280" y="98" fill="rgba(255,255,255,.65)" font-size="11" text-anchor="middle" font-family="sans-serif">NDVI: 0.52</text>
+          <text x="197" y="188" fill="white" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">Zona C — E'tibor kerak!</text>
+          <text x="197" y="206" fill="rgba(255,255,255,.65)" font-size="11" text-anchor="middle" font-family="sans-serif">NDVI: 0.31</text>
+        </svg>
+                        <div class="sat-badge" style="top:12px;left:12px">🛰️ Sentinel-2 · Bugun</div>
+                        <div class="sat-badge" style="top:12px;right:12px">NDVI Tahlil</div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">🗺️ Zona tahlili (NDVI)</div>
+                    </div>
+                    <div class="card" style="padding:8px 16px">
+                        <div class="zone-row">
+                            <div class="zone-sq" style="background:var(--g500)"></div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Zona A — Sog'lom</div>
+                                <div style="font-size:12px;color:var(--n400)">5.2 gektar</div>
+                                <div class="prog-wrap" style="margin-top:6px">
+                                    <div class="prog-fill ndvi-bar" style="width:0%;background:var(--g400);transition:width .8s ease .2s" data-w="78"></div>
+                                </div>
+                            </div>
+                            <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--g500)">0.78</div>
+                            <span class="badge bg">Yaxshi</span>
+                        </div>
+                        <div class="zone-row">
+                            <div class="zone-sq" style="background:var(--y400)"></div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Zona B — O'rtacha</div>
+                                <div style="font-size:12px;color:var(--n400)">4.3 gektar</div>
+                                <div class="prog-wrap" style="margin-top:6px">
+                                    <div class="prog-fill ndvi-bar" style="width:0%;background:var(--y400);transition:width .8s ease .4s" data-w="52"></div>
+                                </div>
+                            </div>
+                            <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--y400)">0.52</div>
+                            <span class="badge by">Kuzating</span>
+                        </div>
+                        <div class="zone-row" style="border:none">
+                            <div class="zone-sq" style="background:var(--r400)"></div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Zona C — Xavfli!</div>
+                                <div style="font-size:12px;color:var(--n400)">3.0 gektar</div>
+                                <div class="prog-wrap" style="margin-top:6px">
+                                    <div class="prog-fill ndvi-bar" style="width:0%;background:var(--r400);transition:width .8s ease .6s" data-w="31"></div>
+                                </div>
+                            </div>
+                            <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--r400)">0.31</div>
+                            <span class="badge br">Xavf</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="alert a-err">
+                        <div class="alert-icon">🚨</div>
+                        <div>
+                            <div class="alert-t">Zona C — Zudlik bilan e'tibor!</div>
+                            <div class="alert-s">Namlik etishmasligi + Issiqlik (38°C). Bugun kechqurun sug'oring va agronomon chaqiring.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">🌾 Hosil bashorati</div><span class="badge bb">Sentyabr 2025</span></div>
+                    <div class="forecast-card">
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between">
+                            <div>
+                                <div style="font-size:12px;opacity:.72;font-weight:700;letter-spacing:.05em">KUTILAYOTGAN HOSIL</div>
+                                <div style="font-family:var(--font-display);font-size:52px;font-weight:800;line-height:1">11.8<span style="font-size:28px"> t</span></div>
+                                <div style="font-size:13px;opacity:.8;margin-top:4px">12.5 gektardan</div>
+                            </div>
+                            <div style="text-align:right;background:rgba(255,255,255,.15);border-radius:14px;padding:12px 16px">
+                                <div style="font-size:11px;opacity:.65;font-weight:700">O'tgan yil</div>
+                                <div style="font-family:var(--font-display);font-size:24px;font-weight:800">9.2 t</div>
+                                <div style="font-size:14px;font-weight:800;color:#7DFFB3">+28% ↑</div>
+                            </div>
+                        </div>
+                        <div style="background:rgba(255,255,255,.15);border-radius:14px;padding:14px;margin-top:14px">
+                            <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                                <div style="font-size:12px;opacity:.8;font-weight:700">Bashorat aniqligi</div>
+                                <div style="font-size:14px;font-weight:800">83%</div>
+                            </div>
+                            <div class="prog-wrap" style="background:rgba(255,255,255,.2)">
+                                <div class="prog-fill" style="width:83%;background:rgba(255,255,255,.85)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec" style="padding-bottom:14px">
+                    <div class="sec-hd">
+                        <div class="sec-title">📸 Tahlil tarixi</div><span class="badge bn">30 kun</span></div>
+                    <div class="card" style="padding:4px 16px">
+                        <div class="hist-item">
+                            <div style="width:52px;height:44px;border-radius:10px;background:var(--g50);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🛰️</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Tahlil #4 — Normal</div>
+                                <div style="font-size:12px;color:var(--n400)">3 kun oldin</div>
+                            </div>
+                            <span class="badge bg">0.72</span>
+                        </div>
+                        <div class="hist-item">
+                            <div style="width:52px;height:44px;border-radius:10px;background:var(--y100);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🛰️</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Tahlil #3 — Ogohlantirish</div>
+                                <div style="font-size:12px;color:var(--n400)">10 kun oldin</div>
+                            </div>
+                            <span class="badge by">0.58</span>
+                        </div>
+                        <div class="hist-item">
+                            <div style="width:52px;height:44px;border-radius:10px;background:var(--g50);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🛰️</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Tahlil #2 — Normal</div>
+                                <div style="font-size:12px;color:var(--n400)">17 kun oldin</div>
+                            </div>
+                            <span class="badge bg">0.75</span>
+                        </div>
+                        <div class="hist-item" style="border:none">
+                            <div style="width:52px;height:44px;border-radius:10px;background:var(--g50);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🛰️</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Tahlil #1 — Yaxshi</div>
+                                <div style="font-size:12px;color:var(--n400)">24 kun oldin</div>
+                            </div>
+                            <span class="badge bg">0.80</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn" onclick="goPage('dashboard.html')"><span class="ni">🏠</span><span class="nl">Bosh</span></button>
+            <button class="nav-btn" onclick="goPage('suvai.html')"><span class="ni">💧</span><span class="nl">SuvAI</span></button>
+            <button class="nav-btn" onclick="goPage('bozor.html')"><span class="ni">📊</span><span class="nl">Bozor</span></button>
+            <button class="nav-btn on" onclick="goPage('skyview.html')"><span class="ni">🛰️</span><span class="nl">Sky</span></button>
+            <button class="nav-btn" onclick="goPage('farmernet.html')"><span class="ni">👥</span><span class="nl">Hamjamiyat</span></button>
+        </nav>
+
+        <div class="overlay" id="ov-sky-info" onclick="closeSheet('sky-info')"></div>
+        <div class="sheet" id="sh-sky-info">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">🛰️ SkyView haqida</div>
+            <div style="font-size:14px;color:var(--n600);line-height:1.75">NASA/ESA <strong style="color:var(--g600)">Sentinel-2</strong> ochiq sun'iy yo'ldosh ma'lumotlaridan foydalaniladi.<br><br>NDVI — ekin sog'ligini 0 dan 1 gacha o'lchaydigan ko'rsatkich. 0.7+ yaxshi, 0.4–0.7 o'rtacha, 0.4 dan past xavfli.<br><br>Har
+                3–5 kunda yangi tahlil olinadi.</div>
+            <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:12px;height:12px;border-radius:3px;background:var(--g500)"></div><span style="font-size:13px;font-weight:700">0.70–1.00 — Sog'lom</span></div>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:12px;height:12px;border-radius:3px;background:var(--y400)"></div><span style="font-size:13px;font-weight:700">0.40–0.70 — Kuzatish</span></div>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div style="width:12px;height:12px;border-radius:3px;background:var(--r400)"></div><span style="font-size:13px;font-weight:700">0.00–0.40 — Xavfli</span></div>
+            </div>
+            <button class="btn btn-g" style="margin-top:20px" onclick="closeSheet('sky-info')">Tushunarli ✓</button>
+        </div>
+
+    </div>
+    <script src="js/app.js"></script>
+    <script>
+        function goPage(page) {
+            window.location.href = page;
+        }
+
+        function openSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.add('open');
+            if (sh) sh.classList.add('open');
+        }
+
+        function closeSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.remove('open');
+            if (sh) sh.classList.remove('open');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(animateNDVI, 300);
+        });
+    </script>
+</body>
+
+</html>

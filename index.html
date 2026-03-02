@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#174D2C">
+    <title>AgroMind UZ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── Splash ── */
+        
+        #pg-splash {
+            background: linear-gradient(155deg, #071A0E 0%, #174D2C 55%, #3AAD65 100%);
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+        
+        #pg-splash::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: rgba(58, 173, 101, .1);
+            top: -80px;
+            right: -80px;
+        }
+        
+        #pg-splash::after {
+            content: '';
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(23, 77, 44, .2);
+            bottom: -60px;
+            left: -60px;
+        }
+        
+        .sp-logo {
+            width: 96px;
+            height: 96px;
+            background: rgba(255, 255, 255, .12);
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 46px;
+            border: 1.5px solid rgba(255, 255, 255, .18);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+            animation: spPop .65s cubic-bezier(.34, 1.56, .64, 1) .25s both;
+            z-index: 1;
+        }
+        
+        @keyframes spPop {
+            from {
+                transform: scale(.3);
+                opacity: 0
+            }
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+        
+        .sp-name {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.5px;
+            animation: spUp .5s ease .55s both;
+            z-index: 1;
+        }
+        
+        .sp-tag {
+            font-size: 14px;
+            color: rgba(255, 255, 255, .65);
+            font-weight: 600;
+            animation: spUp .5s ease .7s both;
+            z-index: 1;
+        }
+        
+        @keyframes spUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+        
+        .sp-dots {
+            display: flex;
+            gap: 6px;
+            animation: spUp .5s ease .9s both;
+            z-index: 1;
+        }
+        
+        .sp-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .35);
+            animation: spDot 1.3s ease-in-out infinite;
+        }
+        
+        .sp-dot:nth-child(2) {
+            animation-delay: .15s
+        }
+        
+        .sp-dot:nth-child(3) {
+            animation-delay: .30s
+        }
+        
+        @keyframes spDot {
+            0%,
+            80%,
+            100% {
+                background: rgba(255, 255, 255, .3);
+                transform: scale(.8)
+            }
+            40% {
+                background: rgba(255, 255, 255, .9);
+                transform: scale(1.25)
+            }
+        }
+        /* ── Onboarding ── */
+        
+        #pg-ob {
+            min-height: 100vh;
+        }
+        
+        #ob-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(155deg, #071A0E, #1F6B3C);
+            transition: background .5s ease;
+        }
+        
+        .ob-slides {
+            flex: 1;
+            position: relative;
+            min-height: 420px;
+        }
+        
+        .ob-slide {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 28px 28px;
+            text-align: center;
+            gap: 18px;
+        }
+        
+        .ob-slide.on {
+            display: flex;
+            animation: slideIn .4s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(28px)
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+        
+        .ob-emoji {
+            font-size: 96px;
+            filter: drop-shadow(0 8px 28px rgba(0, 0, 0, .3));
+        }
+        
+        .ob-title {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.15;
+        }
+        
+        .ob-sub {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .72);
+            line-height: 1.65;
+            max-width: 290px;
+        }
+        
+        .ob-stat-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        
+        .ob-stat {
+            flex: 1;
+            background: rgba(255, 255, 255, .12);
+            border-radius: 14px;
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+        
+        .ob-stat-v {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+        }
+        
+        .ob-stat-l {
+            font-size: 10px;
+            color: rgba(255, 255, 255, .65);
+            font-weight: 700;
+            margin-top: 3px;
+        }
+        
+        .ob-bottom {
+            background: #fff;
+            border-radius: 28px 28px 0 0;
+            padding: 24px 18px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        
+        .ob-dots {
+            display: flex;
+            gap: 7px;
+            justify-content: center;
+        }
+        
+        .ob-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: var(--r-full);
+            background: var(--n200);
+            transition: var(--ease-spring);
+            cursor: pointer;
+        }
+        
+        .ob-dot.on {
+            width: 26px;
+            background: var(--g500);
+        }
+        
+        .ob-skip {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255, 255, 255, .15);
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: var(--r-full);
+            font-size: 12px;
+            font-weight: 800;
+            font-family: var(--font-ui);
+            border: 1px solid rgba(255, 255, 255, .2);
+            z-index: 10;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- SPLASH -->
+        <div class="page active" id="pg-splash" style="display:flex">
+            <div class="sp-logo float">🌾</div>
+            <div class="sp-name">AgroMind UZ</div>
+            <div class="sp-tag">O'zbekiston fermerining aqlli yordamchisi</div>
+            <div class="sp-dots">
+                <div class="sp-dot"></div>
+                <div class="sp-dot"></div>
+                <div class="sp-dot"></div>
+            </div>
+        </div>
+
+        <!-- ONBOARDING -->
+        <div class="page" id="pg-ob" style="display:none;flex-direction:column">
+            <div id="ob-wrap">
+                <button class="ob-skip" onclick="goStart()">O'tkazib yuborish</button>
+                <div class="ob-slides">
+
+                    <div class="ob-slide on">
+                        <div class="ob-emoji float">💧</div>
+                        <div class="ob-title">Aqlli Sug'orish</div>
+                        <div class="ob-sub">AI va tuproq sensorlari yordamida suv sarfingizni 40% kamaytiring</div>
+                        <div class="ob-stat-row">
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">40%</div>
+                                <div class="ob-stat-l">Suv tejash</div>
+                            </div>
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">24/7</div>
+                                <div class="ob-stat-l">Monitoring</div>
+                            </div>
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">AI</div>
+                                <div class="ob-stat-l">Bashorat</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ob-slide">
+                        <div class="ob-emoji float">📊</div>
+                        <div class="ob-title">Bozor Narxlari</div>
+                        <div class="ob-sub">Real-vaqt narxlar va AI tavsiyalari bilan eng foydali ekinni tanlang</div>
+                        <div class="ob-stat-row">
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">10+</div>
+                                <div class="ob-stat-l">Ekin turi</div>
+                            </div>
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">3</div>
+                                <div class="ob-stat-l">Bozor</div>
+                            </div>
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">Live</div>
+                                <div class="ob-stat-l">Narxlar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ob-slide">
+                        <div class="ob-emoji float">🛰️</div>
+                        <div class="ob-title">Satellite Ko'zi</div>
+                        <div class="ob-sub">Kosmosdan maydoningizni kuzating. Kasallikni erta aniqlang va hosilni bashorat qiling</div>
+                        <div class="ob-stat-row">
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">NDVI</div>
+                                <div class="ob-stat-l">Tahlil</div>
+                            </div>
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">3km²</div>
+                                <div class="ob-stat-l">Aniqlik</div>
+                            </div>
+                            <div class="ob-stat">
+                                <div class="ob-stat-v">83%</div>
+                                <div class="ob-stat-l">Ishonch</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ob-bottom">
+                    <div class="ob-dots">
+                        <div class="ob-dot on" onclick="goOb(0)"></div>
+                        <div class="ob-dot" onclick="goOb(1)"></div>
+                        <div class="ob-dot" onclick="goOb(2)"></div>
+                    </div>
+                    <button class="btn btn-g" id="ob-next-btn" onclick="nextOb()">Keyingisi &#8594;</button>
+                    <button class="btn btn-ghost" onclick="goStart()" style="padding:12px">Hisobim bor — Kirish</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var obStep = 0;
+        var obBgs = [
+            'linear-gradient(155deg,#071A0E,#1F6B3C)',
+            'linear-gradient(155deg,#0E1B38,#1A62D4)',
+            'linear-gradient(155deg,#1A0E2E,#5B21B6)'
+        ];
+
+        function goOb(i) {
+            obStep = i;
+            var slides = document.querySelectorAll('.ob-slide');
+            var dots = document.querySelectorAll('.ob-dot');
+            var wrap = document.getElementById('ob-wrap');
+            var btn = document.getElementById('ob-next-btn');
+            var j;
+            for (j = 0; j < slides.length; j++) {
+                slides[j].classList.toggle('on', j === i);
+            }
+            for (j = 0; j < dots.length; j++) {
+                dots[j].classList.toggle('on', j === i);
+            }
+            if (wrap) wrap.style.background = obBgs[i];
+            if (btn) btn.textContent = (i === 2) ? 'Boshlash' : 'Keyingisi \u2192';
+        }
+
+        function nextOb() {
+            if (obStep < 2) {
+                goOb(obStep + 1);
+            } else {
+                goStart();
+            }
+        }
+
+        function goStart() {
+            window.location.href = 'dashboard.html';
+        }
+
+        // Splash → Onboarding
+        setTimeout(function() {
+            var splash = document.getElementById('pg-splash');
+            var ob = document.getElementById('pg-ob');
+            if (splash) splash.style.display = 'none';
+            if (ob) ob.style.display = 'flex';
+        }, 2200);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>AgroMind — SuvAI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .status-hero {
+            background: linear-gradient(140deg, #071A0E, #1F6B3C);
+            color: #fff;
+            border-radius: var(--r-xl);
+            padding: 26px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .status-hero::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(58, 173, 101, .1);
+            top: -60px;
+            right: -60px;
+        }
+        
+        .sh-icon {
+            font-size: 72px;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .sh-title {
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 800;
+        }
+        
+        .sh-sub {
+            font-size: 14px;
+            opacity: .8;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+        
+        .sh-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, .2);
+            border-radius: 12px;
+            padding: 10px 16px;
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 800;
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+        
+        .sched-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1.5px solid var(--n100);
+        }
+        
+        .sched-row:last-child {
+            border-bottom: none;
+        }
+        
+        .sched-day {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        
+        .sd-done {
+            background: var(--g100);
+            color: var(--g700);
+        }
+        
+        .sd-skip {
+            background: var(--n100);
+            color: var(--n400);
+        }
+        
+        .sd-today {
+            background: var(--g600);
+            color: #fff;
+        }
+        
+        .sd-plan {
+            background: var(--b100);
+            color: var(--b600);
+        }
+        
+        .sensor-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1.5px solid var(--n100);
+        }
+        
+        .sensor-item:last-child {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="page active" id="pg-suvai">
+            <div class="topbar">
+                <button class="tb-btn" onclick="goPage('dashboard.html')">&#8592;</button>
+                <div>
+                    <div class="topbar-logo">💧 SuvAI</div>
+                    <div class="topbar-sub">Aqlli sug'orish tizimi</div>
+                </div>
+                <button class="tb-btn" onclick="openSheet('suvai-info')">&#8505;</button>
+            </div>
+
+            <div class="scroll">
+                <div class="sec">
+                    <div class="status-hero">
+                        <div class="sh-icon">✅</div>
+                        <div class="sh-title">Bugun sug'orma</div>
+                        <div class="sh-sub">Tuproq namligi yetarli (42%). AI sug'orish zarurligini aniqlamadi.</div>
+                        <div class="sh-next"><span>⏰</span><span>Keyingi sug'orish: Ertaga 07:00</span></div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">🌱 Tuproq holati</div><span class="badge bg">Real-vaqt</span></div>
+                    <div class="card">
+                        <div style="margin-bottom:16px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                                <div style="font-size:14px;font-weight:800">💧 Namlik darajasi</div>
+                                <div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--g500)">42%</div>
+                            </div>
+                            <div class="prog-wrap">
+                                <div class="prog-fill" style="width:42%;background:linear-gradient(90deg,var(--g500),var(--g300))"></div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--n400);margin-top:5px;font-weight:700">
+                                <span>Quruq</span><span style="color:var(--g500)">Optimal: 30–60%</span><span>Ho'l</span>
+                            </div>
+                        </div>
+                        <div class="div"></div>
+                        <div class="stats" style="gap:8px">
+                            <div class="stat" style="padding:11px">
+                                <div style="font-size:15px;margin-bottom:3px">🔬</div>
+                                <div class="stat-v" style="font-size:18px;color:var(--g500)">6.8</div>
+                                <div class="stat-l">pH</div>
+                            </div>
+                            <div class="stat" style="padding:11px">
+                                <div style="font-size:15px;margin-bottom:3px">🌿</div>
+                                <div class="stat-v" style="font-size:18px;color:var(--b500)">68%</div>
+                                <div class="stat-l">Azot</div>
+                            </div>
+                            <div class="stat" style="padding:11px">
+                                <div style="font-size:15px;margin-bottom:3px">🌡️</div>
+                                <div class="stat-v" style="font-size:18px;color:var(--y500)">24°</div>
+                                <div class="stat-l">Harorat</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">📅 Sug'orish jadvali</div><span class="badge bb">AI bashorat</span></div>
+                    <div class="card" style="padding:8px 16px">
+                        <div class="sched-row">
+                            <div class="sched-day sd-done">Du</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Sug'orish bajarildi</div>
+                                <div style="font-size:12px;color:var(--n400)">85 min · 1,200 litr</div>
+                            </div>
+                            <span class="badge bg">✓</span>
+                        </div>
+                        <div class="sched-row" style="opacity:.55">
+                            <div class="sched-day sd-skip">Se</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">O'tkazib yuborildi</div>
+                                <div style="font-size:12px;color:var(--n400)">Yomg'ir tushdi</div>
+                            </div>
+                            <span class="badge bn">—</span>
+                        </div>
+                        <div class="sched-row" style="background:var(--g50);margin:0 -16px;padding:13px 16px;border-radius:12px">
+                            <div class="sched-day sd-today">Bu</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800;color:var(--g700)">Bugun — Sug'orma</div>
+                                <div style="font-size:12px;color:var(--g500)">Namlik yetarli (42%)</div>
+                            </div>
+                            <span class="badge bg">✅</span>
+                        </div>
+                        <div class="sched-row">
+                            <div class="sched-day sd-plan">Erta</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Rejalashtirildi</div>
+                                <div style="font-size:12px;color:var(--n400)">07:00 · 90 min tavsiya</div>
+                            </div>
+                            <span class="badge bb">Reja</span>
+                        </div>
+                        <div class="sched-row">
+                            <div class="sched-day sd-plan">Pay</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Rejalashtirildi</div>
+                                <div style="font-size:12px;color:var(--n400)">07:00 · 75 min</div>
+                            </div>
+                            <span class="badge bb">Reja</span>
+                        </div>
+                        <div class="sched-row" style="border:none">
+                            <div class="sched-day sd-plan">Jum</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Rejalashtirildi</div>
+                                <div style="font-size:12px;color:var(--n400)">07:00 · 80 min</div>
+                            </div>
+                            <span class="badge bb">Reja</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">📊 Suv sarfi grafigi</div><span class="badge bn">Bu hafta</span></div>
+                    <div class="card">
+                        <div id="wb" style="display:flex;gap:5px;align-items:flex-end;height:72px"></div>
+                        <div style="display:flex;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1.5px solid var(--n100)">
+                            <div>
+                                <div style="font-size:11px;color:var(--n400);font-weight:700">Jami tejash</div>
+                                <div style="font-weight:800;color:var(--g500);font-size:15px">340 litr ↓</div>
+                            </div>
+                            <div style="text-align:center">
+                                <div style="font-size:11px;color:var(--n400);font-weight:700">O'rtacha</div>
+                                <div style="font-weight:800;font-size:15px">75 min/kun</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div style="font-size:11px;color:var(--n400);font-weight:700">Samaradorlik</div>
+                                <div style="font-weight:800;color:var(--g500);font-size:15px">+42%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec" style="padding-bottom:14px">
+                    <div class="sec-hd">
+                        <div class="sec-title">📡 Sensor holati</div>
+                    </div>
+                    <div class="card" style="padding:6px 16px">
+                        <div class="sensor-item">
+                            <div class="online-dot pulse"></div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Sensor #1 — Maydon A</div>
+                                <div style="font-size:12px;color:var(--n400)">5m chuqurlik · 42%</div>
+                            </div>
+                            <span class="badge bg">Online</span>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="online-dot pulse"></div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Sensor #2 — Maydon B</div>
+                                <div style="font-size:12px;color:var(--n400)">5m chuqurlik · 39%</div>
+                            </div>
+                            <span class="badge bg">Online</span>
+                        </div>
+                        <div class="sensor-item" style="border:none">
+                            <div style="width:9px;height:9px;border-radius:50%;background:var(--y400);box-shadow:0 0 0 3px var(--y100);flex-shrink:0"></div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Sensor #3 — Maydon C</div>
+                                <div style="font-size:12px;color:var(--n400)">Batareya kam · 18%</div>
+                            </div>
+                            <span class="badge by">⚠️ Kam</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" style="margin-top:10px" onclick="openSheet('add-sensor')">+ Yangi sensor qo'shish</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn" onclick="goPage('dashboard.html')"><span class="ni">🏠</span><span class="nl">Bosh</span></button>
+            <button class="nav-btn on" onclick="goPage('suvai.html')"><span class="ni">💧</span><span class="nl">SuvAI</span></button>
+            <button class="nav-btn" onclick="goPage('bozor.html')"><span class="ni">📊</span><span class="nl">Bozor</span></button>
+            <button class="nav-btn" onclick="goPage('skyview.html')"><span class="ni">🛰️</span><span class="nl">Sky</span></button>
+            <button class="nav-btn" onclick="goPage('farmernet.html')"><span class="ni">👥</span><span class="nl">Hamjamiyat</span></button>
+        </nav>
+
+        <div class="overlay" id="ov-suvai-info" onclick="closeSheet('suvai-info')"></div>
+        <div class="sheet" id="sh-suvai-info">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">💧 SuvAI haqida</div>
+            <div style="font-size:14px;color:var(--n600);line-height:1.75">SuvAI tuproq namligi sensorlari, ob-havo ma'lumotlari va AI asosida optimal sug'orish jadvalini tuzadi.<br><br>NASA/ESA Sentinel-2 ma'lumotlaridan foydalanib, maydoningiz kuzatiladi.<br><br>O'rtacha <strong style="color:var(--g600)">40–60% suv tejash</strong>                ta'minlanadi.</div>
+            <button class="btn btn-g" style="margin-top:20px" onclick="closeSheet('suvai-info')">Tushunarli ✓</button>
+        </div>
+
+        <div class="overlay" id="ov-add-sensor" onclick="closeSheet('add-sensor')"></div>
+        <div class="sheet" id="sh-add-sensor">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">📡 Yangi sensor qo'shish</div>
+            <div class="inp-group"><label class="inp-label">SENSOR NOMI</label><input class="inp" placeholder="Masalan: Maydon D sensori"></div>
+            <div class="inp-group"><label class="inp-label">O'RNATISH JOYI</label><input class="inp" placeholder="Maydon nomi"></div>
+            <div class="inp-group"><label class="inp-label">CHUQURLIK (metr)</label><input class="inp" type="number" value="5"></div>
+            <button class="btn btn-g" style="margin-top:4px" onclick="closeSheet('add-sensor')">Qo'shish ✓</button>
+        </div>
+
+    </div>
+    <script src="js/app.js"></script>
+    <script>
+        function goPage(page) {
+            window.location.href = page;
+        }
+
+        function openSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.add('open');
+            if (sh) sh.classList.add('open');
+        }
+
+        function closeSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.remove('open');
+            if (sh) sh.classList.remove('open');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            renderWaterBars('wb');
+        });
+    </script>
+</body>
+
+</html>

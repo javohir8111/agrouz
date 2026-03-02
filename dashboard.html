@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>AgroMind — Bosh sahifa</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .weather-card {
+            background: linear-gradient(140deg, #0E2E1A 0%, #1F6B3C 60%, #3AAD65 100%);
+            border-radius: var(--r-xl);
+            padding: 22px 20px 18px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        
+        .weather-card::before {
+            content: '☀️';
+            position: absolute;
+            font-size: 120px;
+            right: -16px;
+            top: -16px;
+            opacity: .1;
+            line-height: 1;
+        }
+        
+        .w-temp {
+            font-family: var(--font-display);
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .forecast-strip {
+            display: flex;
+            background: rgba(0, 0, 0, .18);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-top: 14px;
+        }
+        
+        .fc-day {
+            flex: 1;
+            padding: 8px 4px;
+            text-align: center;
+        }
+        
+        .fc-day.today {
+            background: rgba(255, 255, 255, .12);
+        }
+        
+        .fc-day-d {
+            font-size: 10px;
+            opacity: .65;
+            font-weight: 700;
+        }
+        
+        .fc-day-i {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        
+        .fc-day-t {
+            font-size: 12px;
+            font-weight: 800;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 11px;
+        }
+        
+        .mod-card {
+            background: var(--white);
+            border: 1.5px solid var(--n200);
+            border-radius: var(--r-lg);
+            padding: 16px;
+            cursor: pointer;
+            transition: var(--ease-spring);
+        }
+        
+        .mod-card:active {
+            transform: scale(.96);
+        }
+        
+        .mod-icon {
+            font-size: 38px;
+            line-height: 1;
+            margin-bottom: 9px;
+        }
+        
+        .mod-title {
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--n800);
+        }
+        
+        .mod-sub {
+            font-size: 11px;
+            color: var(--n400);
+            margin-top: 3px;
+            font-weight: 600;
+        }
+        
+        .mod-status {
+            margin-top: 10px;
+        }
+        
+        .ai-card {
+            background: linear-gradient(140deg, #0E2E1A, #1F6B3C);
+            border-radius: var(--r-xl);
+            padding: 20px;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="page active" id="pg-dashboard">
+            <div class="topbar">
+                <div>
+                    <div class="topbar-logo">AgroMind UZ 🌾</div>
+                    <div class="topbar-sub">Salom, Alisher 👋</div>
+                </div>
+                <div class="tb-row">
+                    <button class="tb-btn" onclick="openSheet('alerts')" style="position:relative">
+        🔔
+        <span class="notif-dot">3</span>
+      </button>
+                    <button class="tb-btn" onclick="goPage('profil.html')">👤</button>
+                </div>
+            </div>
+
+            <div class="scroll">
+                <div class="sec">
+                    <div class="weather-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                            <div>
+                                <div style="font-size:12px;opacity:.7;font-weight:700;letter-spacing:.06em">BUGUNGI OB-HAVO</div>
+                                <div class="w-temp">28°</div>
+                                <div style="font-size:16px;font-weight:800;margin-top:2px">☀️ Quyoshli</div>
+                                <div style="font-size:12px;opacity:.65;margin-top:3px">Toshkent viloyati</div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;gap:12px;padding-top:4px">
+                                <div style="text-align:right">
+                                    <div style="font-size:11px;opacity:.7">Namlik</div>
+                                    <div style="font-size:20px;font-weight:700">35%</div>
+                                </div>
+                                <div style="text-align:right">
+                                    <div style="font-size:11px;opacity:.7">Shamol</div>
+                                    <div style="font-size:20px;font-weight:700">14 km/h</div>
+                                </div>
+                                <div style="text-align:right">
+                                    <div style="font-size:11px;opacity:.7">UV</div>
+                                    <div style="font-size:20px;font-weight:700">7</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forecast-strip">
+                            <div class="fc-day">
+                                <div class="fc-day-d">Erta</div>
+                                <div class="fc-day-i">⛅</div>
+                                <div class="fc-day-t">32°</div>
+                            </div>
+                            <div class="fc-day today">
+                                <div class="fc-day-d">Chsh</div>
+                                <div class="fc-day-i">🌤️</div>
+                                <div class="fc-day-t">35°</div>
+                            </div>
+                            <div class="fc-day">
+                                <div class="fc-day-d">Pay</div>
+                                <div class="fc-day-i">🌧️</div>
+                                <div class="fc-day-t">22°</div>
+                            </div>
+                            <div class="fc-day">
+                                <div class="fc-day-d">Jum</div>
+                                <div class="fc-day-i">☀️</div>
+                                <div class="fc-day-t">30°</div>
+                            </div>
+                            <div class="fc-day">
+                                <div class="fc-day-d">Sh</div>
+                                <div class="fc-day-i">☀️</div>
+                                <div class="fc-day-t">31°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="alert a-ok">
+                        <div class="alert-icon">✅</div>
+                        <div>
+                            <div class="alert-t">Bugun sug'orish shart emas</div>
+                            <div class="alert-s">Tuproq namligi 42%. Keyingi: <strong>Ertaga 07:00</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="stats">
+                        <div class="stat">
+                            <div style="font-size:18px;margin-bottom:4px">💧</div>
+                            <div class="stat-v" style="color:var(--b500)">42%</div>
+                            <div class="stat-l">Namlik</div>
+                        </div>
+                        <div class="stat">
+                            <div style="font-size:18px;margin-bottom:4px">🌾</div>
+                            <div class="stat-v">12.5</div>
+                            <div class="stat-l">Gektar</div>
+                        </div>
+                        <div class="stat">
+                            <div style="font-size:18px;margin-bottom:4px">📈</div>
+                            <div class="stat-v" style="color:var(--g500)">87%</div>
+                            <div class="stat-l">Sog'liq</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">Modullar</div>
+                    </div>
+                    <div class="module-grid">
+                        <div class="mod-card" style="border-color:var(--g100)" onclick="goPage('suvai.html')">
+                            <div class="mod-icon">💧</div>
+                            <div class="mod-title">SuvAI</div>
+                            <div class="mod-sub">Aqlli sug'orish</div>
+                            <div class="mod-status"><span class="badge bg">✅ Normal</span></div>
+                        </div>
+                        <div class="mod-card" style="border-color:var(--b100)" onclick="goPage('bozor.html')">
+                            <div class="mod-icon">📊</div>
+                            <div class="mod-title">BozorNarx</div>
+                            <div class="mod-sub">Real-vaqt narxlar</div>
+                            <div class="mod-status"><span class="badge bb">↑ 3 ta narx</span></div>
+                        </div>
+                        <div class="mod-card" style="border-color:#EDE9FE" onclick="goPage('skyview.html')">
+                            <div class="mod-icon">🛰️</div>
+                            <div class="mod-title">SkyView</div>
+                            <div class="mod-sub">Satellite ko'zi</div>
+                            <div class="mod-status"><span class="badge by">⚠️ 1 zona</span></div>
+                        </div>
+                        <div class="mod-card" onclick="goPage('farmernet.html')">
+                            <div class="mod-icon">👥</div>
+                            <div class="mod-title">FermerNet</div>
+                            <div class="mod-sub">Hamjamiyat</div>
+                            <div class="mod-status"><span class="badge bn">14 yangi</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sec">
+                    <div class="sec-hd">
+                        <div class="sec-title">🤖 AI Tavsiyasi</div>
+                    </div>
+                    <div class="ai-card" onclick="goPage('bozor.html')">
+                        <div style="font-size:10px;opacity:.65;font-weight:800;letter-spacing:.1em;margin-bottom:10px">TAVSIYA ETILADIGAN EKIN</div>
+                        <div style="display:flex;align-items:center;gap:12px">
+                            <div style="font-size:44px">🥒</div>
+                            <div>
+                                <div style="font-family:var(--font-display);font-size:22px;font-weight:800">Bodring</div>
+                                <div style="font-size:12px;opacity:.8;margin-top:3px">Narx +12.4% · 87% ishonch</div>
+                            </div>
+                            <div style="margin-left:auto;background:rgba(255,255,255,.15);border-radius:12px;padding:8px 13px;text-align:center">
+                                <div style="font-family:var(--font-display);font-size:22px;font-weight:800">87%</div>
+                                <div style="font-size:10px;opacity:.65">ishonch</div>
+                            </div>
+                        </div>
+                        <div style="font-size:13px;opacity:.82;line-height:1.65;margin-top:12px">Bozorda narx 12.4% oshmoqda. Tuproq tarkibingiz mos. Bu yil 35% ko'proq foyda kutiladi.</div>
+                    </div>
+                </div>
+
+                <div class="sec" style="padding-bottom:14px">
+                    <div class="sec-hd">
+                        <div class="sec-title">So'ngi faoliyat</div>
+                        <span class="sec-link" onclick="goPage('farmernet.html')">Barchasi</span>
+                    </div>
+                    <div class="card" style="padding:6px 16px">
+                        <div class="li" onclick="goPage('suvai.html')">
+                            <div class="av" style="background:var(--b100);color:var(--b500)">💧</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Sug'orish bajarildi</div>
+                                <div style="font-size:11px;color:var(--n400)">Bugun 07:30 · 85 min</div>
+                            </div>
+                            <span class="badge bg">✓</span>
+                        </div>
+                        <div class="li" onclick="goPage('skyview.html')">
+                            <div class="av" style="background:#EDE9FE;color:#7C3AED">🛰️</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Satellite tahlil yangilandi</div>
+                                <div style="font-size:11px;color:var(--n400)">Kecha 18:00</div>
+                            </div>
+                            <span class="badge by">Yangi</span>
+                        </div>
+                        <div class="li" onclick="goPage('bozor.html')">
+                            <div class="av" style="background:var(--y100);color:var(--y500)">📊</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">Bodring narxi oshdi +12.4%</div>
+                                <div style="font-size:11px;color:var(--n400)">2 soat oldin</div>
+                            </div>
+                            <span class="badge bg">↑</span>
+                        </div>
+                        <div class="li" onclick="goPage('farmernet.html')" style="border:none">
+                            <div class="av" style="background:var(--n100);color:var(--n600)">👥</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;font-weight:800">14 ta yangi javob</div>
+                                <div style="font-size:11px;color:var(--n400)">FermerNet · Bugun</div>
+                            </div>
+                            <span class="badge bn">14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Nav -->
+        <nav class="bottom-nav">
+            <button class="nav-btn on" onclick="goPage('dashboard.html')"><span class="ni">🏠</span><span class="nl">Bosh</span></button>
+            <button class="nav-btn" onclick="goPage('suvai.html')"><span class="ni">💧</span><span class="nl">SuvAI</span></button>
+            <button class="nav-btn" onclick="goPage('bozor.html')"><span class="ni">📊</span><span class="nl">Bozor</span></button>
+            <button class="nav-btn" onclick="goPage('skyview.html')"><span class="ni">🛰️</span><span class="nl">Sky</span></button>
+            <button class="nav-btn" onclick="goPage('farmernet.html')"><span class="ni">👥</span><span class="nl">Hamjamiyat</span></button>
+        </nav>
+
+        <!-- Alerts Sheet -->
+        <div class="overlay" id="ov-alerts" onclick="closeSheet('alerts')"></div>
+        <div class="sheet" id="sh-alerts">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">🔔 Bildirishnomalar</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+                <div class="alert a-warn">
+                    <div class="alert-icon">🌡️</div>
+                    <div>
+                        <div class="alert-t">Issiqlik ogohlantirishi</div>
+                        <div class="alert-s">Ertaga 38°C. Ekinlarni erta sug'oring.</div>
+                    </div>
+                </div>
+                <div class="alert a-err">
+                    <div class="alert-icon">⚠️</div>
+                    <div>
+                        <div class="alert-t">Zona C — Kasallik belgilari</div>
+                        <div class="alert-s">Zudlik bilan agronomon chaqiring.</div>
+                    </div>
+                </div>
+                <div class="alert a-ok">
+                    <div class="alert-icon">💧</div>
+                    <div>
+                        <div class="alert-t">Tuproq namligi normal</div>
+                        <div class="alert-s">Bugun sug'orish talab etilmaydi.</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-g" style="margin-top:18px" onclick="closeSheet('alerts')">Tushundim</button>
+        </div>
+
+    </div>
+    <script src="js/app.js"></script>
+    <script>
+        function goPage(page) {
+            window.location.href = page;
+        }
+
+        function openSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.add('open');
+            if (sh) sh.classList.add('open');
+        }
+
+        function closeSheet(id) {
+            var ov = document.getElementById('ov-' + id);
+            var sh = document.getElementById('sh-' + id);
+            if (ov) ov.classList.remove('open');
+            if (sh) sh.classList.remove('open');
+        }
+    </script>
+</body>
+
+</html>
