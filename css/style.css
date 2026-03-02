@@ -74,17 +74,26 @@
 
 /* ─── Reset ─── */
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
-html { font-size:16px; -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-ui);
   background: var(--white);
   color: var(--n900);
+  width: 100%;
   min-height: 100vh;
-  min-height: 100dvh;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
+
 button { cursor:pointer; border:none; font-family:var(--font-ui); }
 input, textarea { font-family:var(--font-ui); }
 a { text-decoration:none; color:inherit; }
@@ -93,7 +102,6 @@ a { text-decoration:none; color:inherit; }
 #app {
   width: 100%;
   min-height: 100vh;
-  min-height: 100dvh;
   background: var(--white);
   position: relative;
   overflow-x: hidden;
@@ -527,4 +535,3 @@ a { text-decoration:none; color:inherit; }
 .zone-good { color:var(--g500); }
 .zone-mid  { color:var(--y400); }
 .zone-bad  { color:var(--r400); }
-
