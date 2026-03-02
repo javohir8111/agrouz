@@ -832,4 +832,2242 @@ html,body{
 
 .location-map{
   width:240px;height:140px;
-  background:var(--gradien
+  background:var(--gradient-accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:48px;position:relative;
+}
+
+.location-map::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.1));
+}
+
+.location-pin{
+  width:40px;height:40px;
+  background:#EF4444;
+  border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-strong);
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:rotate(-45deg) translateY(0);}
+  50%{transform:rotate(-45deg) translateY(-10px);}
+}
+
+.location-pin::after{
+  content:'';width:16px;height:16px;
+  background:#fff;border-radius:50%;
+  transform:rotate(45deg);
+}
+
+.location-info{
+  padding:10px 14px;
+  background:var(--surface);
+}
+
+.location-title{
+  font-size:13px;font-weight:800;
+  color:var(--text);
+  display:flex;align-items:center;gap:6px;
+}
+
+.location-address{
+  font-size:11px;color:var(--text-muted);
+  margin-top:2px;
+}
+
+/* REPLY PREVIEW */
+.bubble-reply{
+  border-left:3px solid var(--accent);
+  background:var(--bg);
+  border-radius:8px;padding:8px 12px;
+  margin-bottom:8px;cursor:pointer;
+  transition:all .2s;
+}
+
+.msg.sent .bubble-reply{
+  border-color:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.15);
+}
+
+.bubble-reply:hover{opacity:.8;}
+
+.bubble-reply-name{
+  font-size:11px;font-weight:800;
+  color:var(--accent);margin-bottom:2px;
+}
+
+.msg.sent .bubble-reply-name{color:rgba(255,255,255,.9);}
+
+.bubble-reply-text{
+  font-size:12px;color:var(--text-secondary);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+.msg.sent .bubble-reply-text{color:rgba(255,255,255,.8);}
+
+/* REACTIONS */
+.msg-reactions{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-top:6px;padding:0 4px;
+}
+
+.msg.sent .msg-reactions{justify-content:flex-end;}
+
+.reaction-badge{
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:20px;padding:4px 10px;
+  font-size:14px;box-shadow:var(--shadow);
+  cursor:pointer;display:flex;align-items:center;gap:4px;
+  transition:all .2s;
+}
+
+.reaction-badge:hover{transform:scale(1.1);border-color:var(--accent);}
+.reaction-badge.active{border-color:var(--accent);background:#F0FBF4;}
+
+.reaction-count{
+  font-size:11px;font-weight:800;
+  color:var(--text-secondary);
+}
+
+/* TYPING */
+.typing-indicator{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 0;align-self:flex-start;
+  animation:fadeIn .3s;
+}
+
+.typing-bubble{
+  background:var(--surface);
+  border-radius:20px;border-bottom-left-radius:6px;
+  padding:12px 16px;display:flex;gap:4px;
+  box-shadow:var(--shadow);
+}
+
+.typing-dot{
+  width:8px;height:8px;
+  background:var(--border);
+  border-radius:50%;
+  animation:typingDot 1.4s ease infinite;
+}
+
+.typing-dot:nth-child(2){animation-delay:.2s;}
+.typing-dot:nth-child(3){animation-delay:.4s;}
+
+@keyframes typingDot{
+  0%,60%,100%{transform:translateY(0);}
+  30%{transform:translateY(-6px);background:var(--accent);}
+}
+
+/* INPUT AREA */
+.cr-input-area{
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  padding:12px 16px;
+  padding-bottom:calc(12px + env(safe-area-inset-bottom,0));
+  position:relative;
+}
+
+.reply-bar{
+  display:none;align-items:center;gap:12px;
+  background:#F0FBF4;border-radius:12px;
+  padding:10px 14px;margin-bottom:10px;
+  border-left:4px solid var(--accent);
+  animation:slideDown .2s;
+}
+
+.reply-bar.visible{display:flex;}
+
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.reply-bar-content{flex:1;min-width:0;}
+
+.reply-bar-label{
+  font-size:11px;font-weight:800;
+  color:var(--accent);text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+.reply-bar-preview{
+  font-size:13px;color:var(--text-secondary);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  margin-top:2px;
+}
+
+.reply-close{
+  width:28px;height:28px;
+  background:var(--border);
+  border-radius:50%;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;cursor:pointer;flex-shrink:0;
+  transition:all .2s;
+}
+
+.reply-close:hover{background:#EF4444;color:#fff;}
+
+.input-row{
+  display:flex;align-items:flex-end;gap:10px;
+}
+
+.input-btn{
+  width:44px;height:44px;
+  border-radius:50%;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;cursor:pointer;flex-shrink:0;
+  transition:all .2s;
+}
+
+.input-btn.attach{
+  background:var(--bg);color:var(--text-secondary);
+}
+
+.input-btn.attach:hover{background:var(--border);}
+
+.input-btn.send{
+  background:var(--gradient-accent);color:#fff;
+  box-shadow:0 4px 16px rgba(58,173,101,.4);
+}
+
+.input-btn.send:hover{transform:scale(1.1);}
+.input-btn.send:active{transform:scale(.95);}
+
+.input-btn.voice{
+  background:var(--blue);color:#fff;
+  box-shadow:0 4px 16px rgba(26,98,212,.4);
+}
+
+.input-box{
+  flex:1;background:var(--bg);
+  border-radius:24px;border:2px solid var(--border);
+  padding:10px 16px;display:flex;
+  align-items:flex-end;gap:10px;
+  transition:all .2s;
+}
+
+.input-box:focus-within{
+  border-color:var(--accent);
+  background:var(--surface);
+  box-shadow:0 0 0 4px rgba(58,173,101,.1);
+}
+
+.msg-input{
+  flex:1;background:none;border:none;outline:none;
+  font-size:15px;font-weight:600;color:var(--text);
+  resize:none;max-height:120px;line-height:1.5;min-height:24px;
+  font-family:'Nunito',sans-serif;
+}
+
+.msg-input::placeholder{color:var(--text-muted);}
+
+.emoji-btn{
+  background:none;border:none;font-size:22px;
+  cursor:pointer;flex-shrink:0;padding:0;
+  transition:transform .2s;opacity:.7;
+}
+
+.emoji-btn:hover{opacity:1;transform:scale(1.1);}
+.emoji-btn:active{transform:scale(.9);}
+
+/* ATTACH MENU */
+.attach-menu{
+  display:none;grid-template-columns:repeat(4,1fr);
+  gap:16px;padding:20px 0 8px;
+  animation:slideUp .3s cubic-bezier(.34,1.56,.64,1);
+}
+
+.attach-menu.open{display:grid;}
+
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.attach-option{
+  display:flex;flex-direction:column;
+  align-items:center;gap:8px;cursor:pointer;
+  transition:all .2s;
+}
+
+.attach-option:hover{transform:translateY(-4px);}
+.attach-option:active{transform:scale(.95);}
+
+.attach-icon{
+  width:56px;height:56px;border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;transition:all .2s;
+  box-shadow:var(--shadow);
+}
+
+.attach-option:hover .attach-icon{transform:scale(1.1);}
+
+.attach-label{
+  font-size:12px;font-weight:700;
+  color:var(--text-secondary);
+}
+
+/* VOICE RECORD */
+.voice-record-bar{
+  display:none;align-items:center;gap:16px;
+  padding:12px 0;animation:slideUp .2s;
+}
+
+.voice-record-bar.active{display:flex;}
+
+.record-visualizer{
+  flex:1;height:50px;
+  display:flex;align-items:center;justify-content:center;
+  gap:3px;
+}
+
+.record-bar{
+  width:4px;background:var(--accent);
+  border-radius:2px;animation:soundBar .5s ease infinite;
+}
+
+.record-bar:nth-child(2n){animation-delay:.1s;}
+.record-bar:nth-child(3n){animation-delay:.2s;}
+.record-bar:nth-child(4n){animation-delay:.3s;}
+
+@keyframes soundBar{
+  0%,100%{height:20%;}
+  50%{height:100%;}
+}
+
+.record-timer{
+  font-size:20px;font-weight:800;
+  color:var(--text);font-family:'Syne',sans-serif;
+  min-width:60px;text-align:center;
+}
+
+.record-cancel{
+  padding:10px 20px;border-radius:20px;
+  border:none;background:var(--bg);
+  color:#EF4444;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+}
+
+.record-cancel:hover{background:#FEE2E2;}
+
+.record-send{
+  width:50px;height:50px;
+  background:var(--gradient-accent);
+  border-radius:50%;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;cursor:pointer;
+  box-shadow:0 4px 16px rgba(58,173,101,.4);
+  transition:all .2s;
+}
+
+.record-send:hover{transform:scale(1.1);}
+.record-send:active{transform:scale(.95);}
+
+/* EMOJI PANEL */
+.emoji-panel{
+  display:none;padding:16px 0 8px;
+  animation:slideUp .2s;
+}
+
+.emoji-panel.open{display:block;}
+
+.emoji-cats{
+  display:flex;gap:8px;
+  overflow-x:auto;scrollbar-width:none;
+  margin-bottom:16px;padding-bottom:4px;
+}
+
+.emoji-cats::-webkit-scrollbar{display:none;}
+
+.emoji-cat-btn{
+  padding:8px 16px;border-radius:20px;
+  border:none;font-size:13px;font-weight:700;
+  cursor:pointer;white-space:nowrap;
+  transition:all .2s;font-family:'Nunito',sans-serif;
+  background:var(--bg);color:var(--text-secondary);
+}
+
+.emoji-cat-btn.active{
+  background:var(--accent);color:#fff;
+  box-shadow:0 4px 12px rgba(58,173,101,.3);
+}
+
+.emoji-grid{
+  display:grid;grid-template-columns:repeat(8,1fr);
+  gap:6px;max-height:200px;overflow-y:auto;
+  scrollbar-width:none;
+}
+
+.emoji-grid::-webkit-scrollbar{display:none;}
+
+.emoji-cell{
+  width:100%;aspect-ratio:1;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;cursor:pointer;border-radius:10px;
+  transition:all .15s;border:none;background:none;
+}
+
+.emoji-cell:hover{background:var(--bg);transform:scale(1.2);}
+.emoji-cell:active{transform:scale(.9);}
+
+/* REACTION POPUP */
+.reaction-popup{
+  position:fixed;
+  background:var(--surface);
+  border-radius:30px;padding:10px 16px;
+  display:none;gap:8px;box-shadow:var(--shadow-strong);
+  z-index:200;border:1px solid var(--border);
+}
+
+.reaction-popup.visible{
+  display:flex;animation:popIn .2s cubic-bezier(.34,1.56,.64,1);
+}
+
+@keyframes popIn{
+  from{opacity:0;transform:scale(.5) translateY(10px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+
+.reaction-btn{
+  font-size:32px;cursor:pointer;
+  transition:all .2s;border:none;background:none;
+  padding:4px;border-radius:50%;
+}
+
+.reaction-btn:hover{
+  transform:scale(1.3) translateY(-4px);
+  background:var(--bg);
+}
+
+.reaction-btn:active{transform:scale(1.1);}
+
+/* MODALS */
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:300;opacity:0;pointer-events:none;
+  transition:opacity .3s;backdrop-filter:blur(4px);
+}
+
+.modal-overlay.open{opacity:1;pointer-events:all;}
+
+.modal-sheet{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--surface);
+  border-radius:28px 28px 0 0;
+  padding:20px 20px calc(30px + env(safe-area-inset-bottom,0));
+  z-index:301;transform:translateY(110%);
+  transition:transform .35s cubic-bezier(.34,1.2,.64,1);
+  max-height:85vh;overflow-y:auto;
+  box-shadow:0 -10px 40px rgba(0,0,0,.2);
+}
+
+.modal-sheet.open{transform:translateY(0);}
+
+@media(min-width:500px){
+  .modal-sheet{
+    left:50%;right:auto;width:430px;
+    transform:translateX(-50%) translateY(110%);
+    border-radius:28px;margin-bottom:20px;
+    max-height:80vh;
+  }
+  .modal-sheet.open{transform:translateX(-50%) translateY(0);}
+}
+
+.modal-handle{
+  width:40px;height:4px;
+  background:var(--border);border-radius:4px;
+  margin:0 auto 20px;
+}
+
+.modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.modal-title{
+  font-family:'Syne',sans-serif;
+  font-size:22px;font-weight:800;color:var(--text);
+}
+
+.modal-close{
+  width:36px;height:36px;
+  border-radius:50%;border:none;
+  background:var(--bg);color:var(--text-secondary);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;cursor:pointer;transition:all .2s;
+}
+
+.modal-close:hover{background:var(--border);color:var(--text);}
+
+.contact-list{max-height:60vh;overflow-y:auto;}
+
+.contact-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 0;cursor:pointer;
+  border-bottom:1px solid var(--border);
+  transition:all .15s;
+}
+
+.contact-item:hover{background:var(--bg);margin:0 -20px;padding:14px 20px;}
+.contact-item:active{opacity:.7;}
+
+.contact-av{
+  width:50px;height:50px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:800;font-family:'Syne',sans-serif;
+  flex-shrink:0;position:relative;
+}
+
+.contact-status{
+  position:absolute;bottom:0;right:0;
+  width:14px;height:14px;
+  background:var(--accent);
+  border-radius:50%;border:2.5px solid var(--surface);
+}
+
+.contact-info{flex:1;min-width:0;}
+
+.contact-name{
+  font-size:16px;font-weight:800;color:var(--text);
+  display:flex;align-items:center;gap:6px;
+}
+
+.contact-sub{
+  font-size:13px;color:var(--text-muted);
+  font-weight:600;margin-top:2px;
+  display:flex;align-items:center;gap:6px;
+}
+
+.contact-action{
+  width:40px;height:40px;
+  border-radius:50%;border:none;
+  background:var(--bg);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;cursor:pointer;transition:all .2s;
+}
+
+.contact-action:hover{background:var(--accent);color:#fff;}
+
+/* IMAGE VIEWER */
+.img-viewer{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.95);
+  z-index:400;display:none;
+  flex-direction:column;
+  animation:fadeIn .3s;
+}
+
+.img-viewer.open{display:flex;}
+
+.img-viewer-close{
+  position:absolute;top:20px;right:20px;
+  width:44px;height:44px;
+  background:rgba(255,255,255,.1);
+  border-radius:50%;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:#fff;cursor:pointer;
+  backdrop-filter:blur(10px);
+  transition:all .2s;z-index:10;
+}
+
+.img-viewer-close:hover{background:rgba(255,255,255,.2);}
+
+.img-viewer-content{
+  flex:1;display:flex;
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+
+.img-viewer-content img{
+  max-width:100%;max-height:100%;
+  border-radius:12px;object-fit:contain;
+}
+
+.img-viewer-info{
+  padding:20px;text-align:center;
+  color:#fff;
+}
+
+.img-viewer-info h3{
+  font-size:18px;font-weight:700;margin-bottom:4px;
+}
+
+.img-viewer-info p{
+  font-size:14px;opacity:.7;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;top:100px;left:50%;
+  transform:translateX(-50%) translateY(-20px);
+  background:var(--primary);color:#fff;
+  padding:12px 24px;border-radius:30px;
+  font-size:14px;font-weight:700;
+  z-index:500;opacity:0;pointer-events:none;
+  transition:all .3s;white-space:nowrap;
+  box-shadow:var(--shadow-strong);
+  display:flex;align-items:center;gap:10px;
+}
+
+.toast.show{
+  opacity:1;transform:translateX(-50%) translateY(0);
+}
+
+.toast-icon{
+  width:24px;height:24px;
+  background:rgba(255,255,255,.2);
+  border-radius:50%;display:flex;
+  align-items:center;justify-content:center;
+  font-size:14px;
+}
+
+/* SCROLL TO BOTTOM */
+.scroll-bottom{
+  position:fixed;
+  bottom:calc(100px + env(safe-area-inset-bottom,0));
+  right:20px;width:44px;height:44px;
+  background:var(--surface);
+  border-radius:50%;border:none;
+  display:none;align-items:center;justify-content:center;
+  font-size:18px;color:var(--accent);
+  cursor:pointer;box-shadow:var(--shadow-strong);
+  z-index:100;transition:all .2s;
+}
+
+.scroll-bottom.visible{display:flex;}
+.scroll-bottom:hover{transform:scale(1.1);}
+.scroll-bottom:active{transform:scale(.95);}
+
+.scroll-bottom .badge{
+  position:absolute;top:-2px;right:-2px;
+  width:18px;height:18px;
+  background:#EF4444;color:#fff;
+  border-radius:50%;font-size:10px;
+  font-weight:800;display:flex;
+  align-items:center;justify-content:center;
+}
+
+/* LOADING */
+.skeleton{
+  background:linear-gradient(90deg,var(--bg) 25%,var(--border) 50%,var(--bg) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s infinite;
+  border-radius:8px;
+}
+
+@keyframes shimmer{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
+
+/* CONTEXT MENU */
+.context-menu{
+  position:fixed;background:var(--surface);
+  border-radius:12px;padding:8px 0;
+  box-shadow:var(--shadow-strong);
+  z-index:250;min-width:180px;
+  display:none;border:1px solid var(--border);
+}
+
+.context-menu.visible{display:block;animation:popIn .15s;}
+
+.context-item{
+  padding:12px 16px;display:flex;
+  align-items:center;gap:12px;
+  cursor:pointer;transition:all .15s;
+  font-size:14px;font-weight:600;
+  color:var(--text);
+}
+
+.context-item:hover{background:var(--bg);}
+.context-item.delete{color:#EF4444;}
+.context-item.delete:hover{background:#FEE2E2;}
+
+/* SEARCH HIGHLIGHT */
+.highlight{
+  background:#FEF3C7;padding:0 2px;border-radius:2px;
+}
+
+/* EMPTY STATE */
+.empty-state{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:40px;text-align:center;
+}
+
+.empty-icon{
+  width:120px;height:120px;
+  background:var(--bg);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:60px;margin-bottom:20px;
+}
+
+.empty-title{
+  font-size:20px;font-weight:800;
+  color:var(--text);margin-bottom:8px;
+}
+
+.empty-text{
+  font-size:15px;color:var(--text-muted);
+  max-width:280px;line-height:1.6;
+}
+
+/* NEW MESSAGE BADGE */
+.new-message-badge{
+  position:absolute;top:20px;right:20px;
+  background:var(--accent);color:#fff;
+  padding:6px 14px;border-radius:20px;
+  font-size:12px;font-weight:700;
+  box-shadow:var(--shadow);
+  animation:badgePop .3s;
+  cursor:pointer;display:none;
+}
+
+.new-message-badge.visible{display:block;}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- SCREEN 1: CHAT LIST -->
+<div class="screen active" id="screen-list">
+  <div class="cl-header">
+    <div class="cl-header-top">
+      <div>
+        <div class="cl-title">👥 FermerNet</div>
+        <div class="cl-subtitle">
+          <span class="online-dot"></span>
+          4,280 ta fermer onlayn
+        </div>
+      </div>
+      <div class="cl-header-btns">
+        <button class="cl-icon-btn" onclick="toggleSearch()" title="Qidirish">🔍</button>
+        <button class="cl-icon-btn" onclick="openModal()" title="Yangi chat">✏️</button>
+        <button class="cl-icon-btn" onclick="goPage('dashboard.html')" title="Bosh sahifa">🏠</button>
+      </div>
+    </div>
+    <div class="cl-search" id="global-search" style="display:none">
+      <span style="font-size:18px;opacity:.7">🔍</span>
+      <input type="text" placeholder="Chatlarni, xabarlarni qidiring..." oninput="filterChats(this.value)" id="search-input">
+      <button onclick="clearSearch()" style="background:none;border:none;font-size:16px;cursor:pointer;opacity:.6">✕</button>
+    </div>
+  </div>
+
+  <!-- Stories -->
+  <div class="story-section">
+    <div class="story-row" id="story-row">
+      <div class="story-item" onclick="openStory('self')">
+        <div class="story-ring" style="background:linear-gradient(135deg,var(--accent),var(--accent-light))">
+          <div class="story-avatar" style="background:var(--gradient);color:#fff;font-size:22px">A</div>
+          <div class="story-add-btn">+</div>
+        </div>
+        <div class="story-name">Sizning</div>
+      </div>
+      <!-- Stories loaded dynamically -->
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="cl-tabs">
+    <button class="cl-tab active" onclick="switchTab(this,'all')">
+      Hammasi <span class="tab-badge">12</span>
+    </button>
+    <button class="cl-tab" onclick="switchTab(this,'groups')">
+      Guruhlar <span class="tab-badge muted">3</span>
+    </button>
+    <button class="cl-tab" onclick="switchTab(this,'personal')">
+      Shaxsiy
+    </button>
+    <button class="cl-tab" onclick="switchTab(this,'channels')">
+      Kanallar
+    </button>
+  </div>
+
+  <!-- Chat List -->
+  <div class="chat-list" id="chat-list">
+    <!-- Chats loaded dynamically -->
+  </div>
+
+  <div class="new-message-badge" id="new-msg-badge" onclick="scrollToUnread()">
+    ↓ Yangi xabarlar
+  </div>
+
+  <button class="fab-btn" onclick="openModal()">✏️</button>
+
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="goPage('dashboard.html')">
+      <span class="ni">🏠</span>
+      <span class="nl">Bosh</span>
+    </button>
+    <button class="nav-btn" onclick="goPage('suvai.html')">
+      <span class="ni">💧</span>
+      <span class="nl">SuvAI</span>
+      <span class="nav-badge"></span>
+    </button>
+    <button class="nav-btn" onclick="goPage('bozor.html')">
+      <span class="ni">📊</span>
+      <span class="nl">Bozor</span>
+    </button>
+    <button class="nav-btn" onclick="goPage('skyview.html')">
+      <span class="ni">🛰️</span>
+      <span class="nl">Sky</span>
+    </button>
+    <button class="nav-btn on">
+      <span class="ni">👥</span>
+      <span class="nl">Hamjamiyat</span>
+      <span class="tab-badge" style="position:absolute;top:4px;right:16px;font-size:9px;min-width:16px;height:16px;">5</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- SCREEN 2: CHAT ROOM -->
+<div class="screen" id="screen-chat">
+  <div class="cr-header">
+    <button class="cr-back" onclick="closeChat()">←</button>
+    <div class="cr-av" id="cr-av">🌾</div>
+    <div class="cr-info">
+      <div class="cr-name" id="cr-name">Toshkent Fermerlar</div>
+      <div class="cr-status" id="cr-status">
+        <span class="online-dot"></span>
+        148 a'zo • 32 ta onlayn
+      </div>
+    </div>
+    <div class="cr-actions">
+      <button class="cr-action-btn" onclick="startCall('audio')" title="Ovozli qo'ng'iroq">📞</button>
+      <button class="cr-action-btn" onclick="startCall('video')" title="Video qo'ng'iroq">📹</button>
+      <button class="cr-action-btn" onclick="toggleChatMenu()" title="Menyu">⋮</button>
+    </div>
+  </div>
+
+  <div class="cr-messages" id="cr-messages" onscroll="onMessagesScroll()">
+    <!-- Messages loaded dynamically -->
+  </div>
+
+  <button class="scroll-bottom" id="scroll-bottom" onclick="scrollToBottom(true)">
+    ↓
+    <span class="badge" id="unread-count">3</span>
+  </button>
+
+  <div class="cr-input-area">
+    <div class="reply-bar" id="reply-bar">
+      <div class="reply-bar-content">
+        <div class="reply-bar-label" id="reply-bar-label">Javob berish</div>
+        <div class="reply-bar-preview" id="reply-bar-preview"></div>
+      </div>
+      <button class="reply-close" onclick="closeReply()">✕</button>
+    </div>
+
+    <div class="voice-record-bar" id="voice-record-bar">
+      <div class="record-visualizer" id="visualizer"></div>
+      <div class="record-timer" id="record-timer">0:00</div>
+      <button class="record-cancel" onclick="cancelRecording()">
+        <span>✕</span> Bekor
+      </button>
+      <button class="record-send" onclick="sendVoice()">⬆️</button>
+    </div>
+
+    <div class="input-row" id="normal-input">
+      <button class="input-btn attach" onclick="toggleAttach()">📎</button>
+      <div class="input-box">
+        <textarea class="msg-input" id="msg-input" 
+          placeholder="Xabar yozing..." rows="1" 
+          oninput="onInput(this)" 
+          onkeydown="onKeyDown(event)"
+          onfocus="onInputFocus()"></textarea>
+        <button class="emoji-btn" onclick="toggleEmoji()">😊</button>
+      </div>
+      <button class="input-btn voice" id="send-btn" onclick="onSendBtn()">🎤</button>
+    </div>
+
+    <div class="emoji-panel" id="emoji-panel">
+      <div class="emoji-cats">
+        <button class="emoji-cat-btn active" onclick="switchEmojiCat(this,'smileys')">😊 Kayfiyat</button>
+        <button class="emoji-cat-btn" onclick="switchEmojiCat(this,'nature')">🌿 Tabiat</button>
+        <button class="emoji-cat-btn" onclick="switchEmojiCat(this,'food')">🍅 Oziq-ovqat</button>
+        <button class="emoji-cat-btn" onclick="switchEmojiCat(this,'objects')">🔧 Asboblar</button>
+        <button class="emoji-cat-btn" onclick="switchEmojiCat(this,'recent')">🕐 So'nggi</button>
+      </div>
+      <div class="emoji-grid" id="emoji-grid"></div>
+    </div>
+
+    <div class="attach-menu" id="attach-menu">
+      <div class="attach-option" onclick="attachAction('photo')">
+        <div class="attach-icon" style="background:#E3F2FD">📷</div>
+        <div class="attach-label">Galereya</div>
+      </div>
+      <div class="attach-option" onclick="attachAction('camera')">
+        <div class="attach-icon" style="background:#E8F5E9">📸</div>
+        <div class="attach-label">Kamera</div>
+      </div>
+      <div class="attach-option" onclick="attachAction('video')">
+        <div class="attach-icon" style="background:#F3E5F5">🎬</div>
+        <div class="attach-label">Video</div>
+      </div>
+      <div class="attach-option" onclick="attachAction('file')">
+        <div class="attach-icon" style="background:#FFF3E0">📄</div>
+        <div class="attach-label">Fayl</div>
+      </div>
+      <div class="attach-option" onclick="attachAction('location')">
+        <div class="attach-icon" style="background:#E8F5E9">📍</div>
+        <div class="attach-label">Manzil</div>
+      </div>
+      <div class="attach-option" onclick="attachAction('contact')">
+        <div class="attach-icon" style="background:#FCE4EC">👤</div>
+        <div class="attach-label">Kontakt</div>
+      </div>
+      <div class="attach-option" onclick="attachAction('poll')">
+        <div class="attach-icon" style="background:#E0F2F1">📊</div>
+        <div class="attach-label">So'rovnoma</div>
+      </div>
+      <div class="attach-option" onclick="attachAction('agro')">
+        <div class="attach-icon" style="background:#F9FBE7">🌾</div>
+        <div class="attach-label">Agro ma'lumot</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-ov" onclick="closeModal()">
+  <div class="modal-sheet" id="modal-sh" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title">Yangi xabar</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="cl-search" style="background:var(--bg);margin-bottom:16px;border-radius:12px;">
+      <span style="font-size:18px;color:var(--text-muted)">🔍</span>
+      <input type="text" placeholder="Fermer yoki guruh qidiring..." 
+        style="color:var(--text);background:none;border:none;outline:none;font-size:15px;font-weight:600;flex:1"
+        oninput="filterContacts(this.value)">
+    </div>
+    
+    <div style="display:flex;gap:12px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px;">
+      <button class="emoji-cat-btn active" style="padding:8px 16px;">👥 Barchasi</button>
+      <button class="emoji-cat-btn" style="padding:8px 16px;">⭐ Tanlangan</button>
+      <button class="emoji-cat-btn" style="padding:8px 16px;">🏘️ Tuman</button>
+    </div>
+
+    <div class="contact-list" id="contact-list">
+      <!-- Contacts loaded dynamically -->
+    </div>
+  </div>
+</div>
+
+<div class="img-viewer" id="img-viewer" onclick="closeImgViewer()">
+  <button class="img-viewer-close" onclick="closeImgViewer()">✕</button>
+  <div class="img-viewer-content">
+    <img src="" alt="Rasm" id="viewer-img">
+  </div>
+  <div class="img-viewer-info">
+    <h3 id="viewer-title">Rasm</h3>
+    <p id="viewer-date">12:30</p>
+  </div>
+</div>
+
+<div class="reaction-popup" id="reaction-popup">
+  <button class="reaction-btn" onclick="addReaction('❤️')" title="Yoqdi">❤️</button>
+  <button class="reaction-btn" onclick="addReaction('👍')" title="Zo'r">👍</button>
+  <button class="reaction-btn" onclick="addReaction('😂')" title="Kulgi">😂</button>
+  <button class="reaction-btn" onclick="addReaction('😮')" title="Hayron">😮</button>
+  <button class="reaction-btn" onclick="addReaction('👏')" title="Qoyil">👏</button>
+  <button class="reaction-btn" onclick="addReaction('🔥')" title="Ajoyib">🔥</button>
+  <button class="reaction-btn" onclick="addReaction('🌾')" title="Fermer">🌾</button>
+  <button class="reaction-btn" onclick="addReaction('💧')" title="Suv">💧</button>
+</div>
+
+<div class="context-menu" id="context-menu">
+  <div class="context-item" onclick="contextAction('reply')">
+    <span>↩️</span> Javob berish
+  </div>
+  <div class="context-item" onclick="contextAction('copy')">
+    <span>📋</span> Nusxa olish
+  </div>
+  <div class="context-item" onclick="contextAction('forward')">
+    <span>↪️</span> Yuborish
+  </div>
+  <div class="context-item" onclick="contextAction('pin')">
+    <span>📌</span> Prikrepit
+  </div>
+  <div class="context-item delete" onclick="contextAction('delete')">
+    <span>🗑️</span> O'chirish
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <span class="toast-icon">✓</span>
+  <span id="toast-text">Amal bajarildi</span>
+</div>
+
+<script>
+// Enhanced Data Structure
+const CHATS = [
+  {
+    id: 0,
+    type: 'group',
+    name: 'Toshkent Fermerlar ✅',
+    avatar: '🌾',
+    avatarBg: 'linear-gradient(135deg,#1F6B3C,#5CC880)',
+    status: "148 a'zo • 32 ta onlayn",
+    unread: 8,
+    pinned: true,
+    muted: false,
+    lastMessage: {
+      text: "Pomidor narxi yana oshdi...",
+      sender: 'Behruz',
+      time: '12:38',
+      type: 'text'
+    },
+    messages: [
+      {id:1, from:'Behruz', fromId: 101, avatar:'#1A62D4', type:'text', text:"Assalomu alaykum! Bugun Toshkent bozorida pomidor narxi yana oshdi, 1 kg = 4,800 so'm", time:'10:15', reactions:[]},
+      {id:2, from:'Dilshod', fromId: 102, avatar:'#7C3AED', type:'text', text:"Voy, men ham kuzatgan edim. Menimcha endi pasaymaydigan bo'ldi 🤔", time:'10:17', reactions:['👍','😮']},
+      {id:3, from:'men', type:'text', text:"Ha, bozor tez o'zgarmoqda. AgroMind AI ham Bodring ekilishini tavsiya qilyapti — narxi +12.4% o'sgan", time:'10:20', sent:true, read:true, reactions:['❤️','🔥','👍']},
+      {id:4, from:'Sardor', fromId: 103, avatar:'#059669', type:'image', text:'Mening dala holati', emoji:'🌿', time:'10:35', reactions:['😮','👏']},
+      {id:5, from:'Hamid', fromId: 104, avatar:'#B45309', type:'voice', duration:'0:42', time:'11:02', reactions:[]},
+      {id:6, from:'men', type:'text', text:"Zo'r! Dalangiz juda yaxshi ko'rinipti Sardor aka 🌱", time:'11:05', sent:true, read:true, replyTo:{name:'Sardor', text:'📷 Rasm'}},
+      {id:7, from:'Behruz', fromId: 101, avatar:'#1A62D4', type:'video', duration:'0:28', time:'11:30', reactions:['🔥']},
+      {id:8, from:'Dilshod', fromId: 102, avatar:'#7C3AED', type:'text', text:"Bugun kechqurun umumiy yig'ilish bo'ladi, ishtiroking bormi?", time:'12:10', reactions:[]},
+      {id:9, from:'men', type:'location', time:'12:15', sent:true, read:false},
+      {id:10, from:'Behruz', fromId: 101, avatar:'#1A62D4', type:'file', fileName:'Agrar_Hisobot_2025.pdf', fileSize:'2.4 MB', time:'12:30', reactions:[]},
+      {id:11, from:'men', type:'text', text:"Rahmat Behruz aka! Faylni ko'rib chiqaman 👍", time:'12:38', sent:true, read:true, reactions:['❤️']}
+    ]
+  },
+  {
+    id: 1,
+    type: 'group',
+    name: "Sug'orish Guruhi",
+    avatar: '💧',
+    avatarBg: 'linear-gradient(135deg,#1A62D4,#3D82EF)',
+    status: "24 a'zo • 8 ta onlayn",
+    unread: 3,
+    pinned: false,
+    muted: false,
+    lastMessage: {text:'Rasm yuborildi', sender:'Sardor', time:'11:20', type:'image'}
+  },
+  {
+    id: 2,
+    type: 'group',
+    name: "Farg'ona Vodiysi 🌿",
+    avatar: '🌽',
+    avatarBg: 'linear-gradient(135deg,#B45309,#F59E0B)',
+    status: "312 a'zo",
+    unread: 0,
+    pinned: false,
+    muted: true,
+    lastMessage: {text:'Ovozli xabar', sender:'Hamid', time:'Kecha', type:'voice'}
+  },
+  {
+    id: 3,
+    type: 'group',
+    name: 'Kartoshka Yetishtirishchilar',
+    avatar: '🥔',
+    avatarBg: 'linear-gradient(135deg,#7C3AED,#A78BFA)',
+    status: "89 a'zo",
+    unread: 0,
+    pinned: true,
+    muted: false,
+    lastMessage: {text:'Agrar.pdf yuborildi', sender:'Muzaffar', time:'Dush', type:'file'}
+  },
+  {
+    id: 4,
+    type: 'personal',
+    name: 'Behruz Toshmatov',
+    avatar: 'B',
+    avatarBg: '#1A62D422',
+    avatarColor: '#1A62D4',
+    status: 'Onlayn',
+    online: true,
+    unread: 0,
+    typing: false,
+    lastMessage: {text:"Yaxshi, men ham qo'llayman", sender:'men', time:'12:01', read:true}
+  },
+  {
+    id: 5,
+    type: 'personal',
+    name: 'Dilshod Rahimov',
+    avatar: 'D',
+    avatarBg: '#7C3AED22',
+    avatarColor: '#7C3AED',
+    status: 'Oxirgi marta: 1 soat oldin',
+    online: false,
+    unread: 1,
+    lastMessage: {text:'🎤 1:23', sender:'Dilshod', time:'10:45', type:'voice'}
+  },
+  {
+    id: 6,
+    type: 'personal',
+    name: 'Sardor Nazarov',
+    avatar: 'S',
+    avatarBg: '#05966922',
+    avatarColor: '#059669',
+    status: 'Onlayn',
+    online: true,
+    unread: 0,
+    lastMessage: {text:'📍 Manzil yuborildi', sender:'Sardor', time:'Kecha', type:'location'}
+  }
+];
+
+const STORIES = [
+  {id:1, name:'Behruz', avatar:'B', color:'#1A62D4', seen:false, live:true},
+  {id:2, name:'Dilshod', avatar:'D', color:'#7C3AED', seen:false, live:false},
+  {id:3, name:'Sardor', avatar:'S', color:'#059669', seen:true, live:false},
+  {id:4, name:'Hamid', avatar:'H', color:'#B45309', seen:true, live:false},
+  {id:5, name:'Muzaffar', avatar:'M', color:'#DC2626', seen:false, live:true},
+  {id:6, name:'Nodira', avatar:'N', color:'#D97706', seen:false, live:false}
+];
+
+const CONTACTS = [
+  {id:101, name:'Behruz Toshmatov', avatar:'B', color:'#1A62D4', region:"Farg'ona", crop:'🌾 Pomidor', online:true},
+  {id:102, name:'Dilshod Rahimov', avatar:'D', color:'#7C3AED', region:'Samarqand', crop:'🥒 Bodring', online:false},
+  {id:103, name:'Sardor Nazarov', avatar:'S', color:'#059669', region:'Toshkent', crop:'🚜 Texnika', online:true},
+  {id:104, name:'Hamid Yusupov', avatar:'H', color:'#B45309', region:'Andijon', crop:'🥔 Kartoshka', online:false},
+  {id:105, name:'Muzaffar Karimov', avatar:'M', color:'#DC2626', region:'Namangan', crop:"🌽 Makkajo'xori", online:true},
+  {id:106, name:'Nodira Azimova', avatar:'N', color:'#D97706', region:'Qashqadaryo', crop:'🍇 Uzum', online:true}
+];
+
+const EMOJIS = {
+  smileys: ['😀','😃','😄','😁','😆','😅','😂','🤣','😊','😇','🥰','😍','🤩','😘','🥳','🙂','🤗','🤔','😐','😶','😏','😒','🙄','😬','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤑','🤠','😎','🤓','🥸','😕','😟','🙁','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾'],
+  nature: ['🌱','🌿','☘️','🍀','🎍','🪴','🎋','🍃','🍂','🍁','🌾','🌺','🌻','🌹','🥀','🌷','🌼','🌸','💐','🍄','🌵','🌴','🌲','🌳','🪵','🪨','⛰️','🏔️','❄️','☃️','⛄','🌊','🌬️','🌀','🌈','🌅','🌄','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','⛈️','🌩️','🌨️','❄️','💧','☔','☂️','🌊','🌫️','🐄','🐂','🐃','🐎','🐑','🐐','🦙','🦌','🐕','🐈','🐓','🦃','🦆','🦢','🦜','🦩','🕊️','🐇','🐁','🐀','🐿️','🦔','🦇','🐻','🐨','🐼','🦘','🦡','🐾','🦅','🦉','🦜','🐦','🐧'],
+  food: ['🍅','🥒','🥬','🥦','🧄','🧅','🥕','🌽','🫑','🌶️','🫒','🥔','🍠','🫘','🥜','🍇','🍈','🍉','🍊','🍋','🍌','🍍','🥭','🍎','🍏','🍐','🍑','🍒','🍓','🫐','🥝','🍅','🥥','🥑','🍆','🥔','🥕','🌽','🌶️','🫑','🥒','🥬','🥦','🧄','🧅','🍄','🥜','🫘','🌰','🍞','🥐','🥖','🫓','🥨','🥯','🥞','🧇','🧀','🍖','🍗','🥩','🥓','🍔','🍟','🍕','🌭','🥪','🌮','🌯','🫔','🥙','🧆','🥚','🍳','🥘','🍲','🫕','🥣','🥗','🍿','🧈','🧂','🥫','🍱','🍘','🍙','🍚','🍛','🍜','🍝','🍠','🍢','🍣','🍤','🍥','🥮','🍡','🥟','🥠','🥡','🦀','🦞','🦐','🦑','🦪','🍦','🍧','🍨','🍩','🍪','🎂','🍰','🧁','🥧','🍫','🍬','🍭','🍮','🍯','🍼','🥛','☕','🫖','🍵','🍶','🍾','🍷','🍸','🍹','🍺','🍻','🥂','🥃','🫗','🥤','🧋','🧃','🧉','🧊'],
+  objects: ['🔧','🪛','🔩','🔨','🪓','⛏️','⚒️','🛠️','🗡️','⚔️','🔫','🪃','🏹','🛡️','🪚','🔬','🔭','📡','💉','🩸','💊','🩹','🩺','🌡️','🧹','🪠','🧺','🧻','🚽','🚰','🚿','🛁','🛀','🧼','🪥','🪒','🧽','🪣','🧴','🛎️','🔑','🗝️','🚪','🪑','🛋️','🛏️','🛌','🧸','🪆','🖼️','🪞','🪟','🛍️','🛒','🎁','🎈','🎏','🎀','🪄','🪅','🎊','🎉','🎎','🏆','🎐','🪩','🎀','🎁','🎗️','🎟️','🎫','🎖️','🏅','🥇','🥈','🥉','⚽','⚾','🥎','🏀','🏐','🏈','🏉','🎾','🥏','🎳','🏏','🏑','🏒','🥍','🏓','🏸','🥊','🥋','🥅','⛳','⛸️','🎣','🤿','🎽','🎿','🛷','🥌','🎯','🪀','🪁','🎱','🔮','🪄','🎮','🕹️','🎰','🎲','🧩','🧸','🪅','🪆','🖼️','🎨','🧵','🪡','🧶','🪢','👓','🕶️','🥽','🥼','🦺','👔','👕','👖','🧣','🧤','🧥','🧦','👗','👘','🥻','🩱','🩲','🩳','👙','👚','👛','👜','👝','🛍️','🎒','🩴','👞','👟','🥾','🥿','👠','👡','🩰','👢','👑','👒','🎩','🎓','🧢','🪖','⛑️','📿','💄','💍','💎','🔇','🔈','🔉','🔊','📢','📣','📯','🔔','🔕','🎼','🎵','🎶','🎙️','🎚️','🎛️','🎤','🎧','📻','🎷','🪗','🎸','🎹','🎺','🎻','🪕','🥁','🪘','📱','📲','☎️','📞','📟','📠','🔋','🔌','💻','🖥️','🖨️','⌨️','🖱️','🖲️','💽','💾','💿','📀','🧮','🎥','🎞️','📽️','🎬','📺','📷','📸','📹','📼','🔍','🔎','🕯️','💡','🔦','🏮','🪔','📔','📕','📖','📗','📘','📙','📚','📓','📒','📃','📜','📄','📰','🗞️','📑','🔖','🏷️','💰','🪙','💴','💵','💶','💷','💸','💳','🧾','💹','✉️','📧','📨','📩','📤','📥','📦','📫','📪','📬','📭','📮','🗳️','✏️','✒️','🖋️','🖊️','🖌️','🖍️','📝','💼','📁','📂','🗂️','📅','📆','🗒️','🗓️','📇','📈','📉','📊','📋','📌','📍','📎','🖇️','📏','📐','✂️','🗃️','🗄️','🗑️','🔒','🔓','🔏','🔐','🔑','🗝️','🔨','🪓','⛏️','⚒️','🛠️','🗡️','⚔️','🔫','🪃','🏹','🛡️','🪚','🔧','🪛','🔩','⚙️','🗜️','⚖️','🦯','🔗','⛓️','🪝','🧰','🧲','🪜','⚗️','🧪','🧫','🧬','🔬','🔭','📡','💉','🩸','💊','🩹','🩺','🌡️','🧹','🪠','🧺','🧻','🚽','🚰','🚿','🛁','🛀','🧼','🪥','🪒','🧽','🪣','🧴','🛎️','🔑','🗝️','🚪','🪑','🛋️','🛏️','🛌','🧸','🪆','🖼️','🪞','🪟','🛍️','🛒','🎁','🎈','🎏','🎀','🪄','🪅','🎊','🎉','🎎','🏆','🎐','🪩','🎀','🎁','🎗️','🎟️','🎫','🎖️','🏅','🥇','🥈','🥉','⚽','⚾','🥎','🏀','🏐','🏈','🏉','🎾','🥏','🎳','🏏','🏑','🏒','🥍','🏓','🏸','🥊','🥋','🥅','⛳','⛸️','🎣','🤿','🎽','🎿','🛷','🥌','🎯','🪀','🪁','🎱','🔮','🪄','🎮','🕹️','🎰','🎲','🧩','🧸','🪅','🪆','🖼️','🎨','🧵','🪡','🧶','🪢'],
+  recent: []
+};
+
+// State Management
+let currentChatId = null;
+let currentUser = {id: 0, name: 'Admin', avatar: 'A'};
+let replyingTo = null;
+let isRecording = false;
+let recordTimer = null;
+let recordSeconds = 0;
+let attachOpen = false;
+let emojiOpen = false;
+let activeReactionMsgId = null;
+let msgIdCounter = 1000;
+let longPressTimer = null;
+let currentFilter = 'all';
+let searchQuery = '';
+let recentEmojis = JSON.parse(localStorage.getItem('recentEmojis') || '[]');
+
+// Initialization
+document.addEventListener('DOMContentLoaded', () => {
+  renderStories();
+  renderChatList();
+  renderContacts();
+  renderEmojiGrid('smileys');
+  updateRecentEmojis();
+  
+  // Service Worker registration for PWA
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+});
+
+// Story Functions
+function renderStories() {
+  const row = document.getElementById('story-row');
+  STORIES.forEach(story => {
+    const div = document.createElement('div');
+    div.className = 'story-item';
+    div.onclick = () => openStory(story.id);
+    div.innerHTML = `
+      <div class="story-ring ${story.seen ? 'seen' : ''} ${story.live ? 'live' : ''}">
+        <div class="story-avatar" style="background:${story.color}22;color:${story.color}">${story.avatar}</div>
+      </div>
+      <div class="story-name">${story.name}</div>
+      ${story.live ? '<div class="story-time">● LIVE</div>' : ''}
+    `;
+    row.appendChild(div);
+  });
+}
+
+function openStory(id) {
+  if (id === 'self') {
+    showToast('📸 Stori yuklash ochildi');
+  } else {
+    showToast(`📖 ${STORIES.find(s => s.id === id)?.name || 'Fermer'} storisi ochilmoqda`);
+  }
+}
+
+// Chat List Functions
+function renderChatList() {
+  const list = document.getElementById('chat-list');
+  list.innerHTML = '';
+  
+  let filtered = CHATS.filter(chat => {
+    if (currentFilter === 'groups') return chat.type === 'group';
+    if (currentFilter === 'personal') return chat.type === 'personal';
+    if (currentFilter === 'channels') return chat.type === 'channel';
+    return true;
+  });
+  
+  if (searchQuery) {
+    filtered = filtered.filter(chat => 
+      chat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      chat.lastMessage?.text.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+  
+  // Sort: pinned first, then by time
+  filtered.sort((a, b) => {
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    return 0;
+  });
+  
+  let lastSection = '';
+  
+  filtered.forEach(chat => {
+    const section = chat.type === 'group' ? 'GURUHLAR' : 'SHAXSIY XABARLAR';
+    if (section !== lastSection && !searchQuery) {
+      list.innerHTML += `<div class="section-header">${section}</div>`;
+      lastSection = section;
+    }
+    
+    const isUnread = chat.unread > 0;
+    const timeClass = isUnread ? 'unread' : '';
+    const badgeClass = chat.muted ? 'muted' : '';
+    const onlineBadge = chat.online ? '<div class="online-badge"></div>' : '';
+    const typingBadge = chat.typing ? '<div class="typing-badge">✎</div>' : '';
+    
+    let preview = '';
+    if (chat.lastMessage) {
+      const sender = chat.lastMessage.sender === 'men' ? 'Siz: ' : (chat.type === 'group' ? chat.lastMessage.sender + ': ' : '');
+      const icon = chat.lastMessage.type === 'image' ? '📷 ' : 
+                   chat.lastMessage.type === 'voice' ? '🎤 ' :
+                   chat.lastMessage.type === 'video' ? '🎬 ' :
+                   chat.lastMessage.type === 'file' ? '📎 ' :
+                   chat.lastMessage.type === 'location' ? '📍 ' : '';
+      preview = `<span class="sender">${sender}</span>${icon}${chat.lastMessage.text}`;
+    }
+    
+    const pinIcon = chat.pinned ? '<div class="pin-icon">📌</div>' : '';
+    
+    const item = document.createElement('div');
+    item.className = `chat-item ${isUnread ? 'unread' : ''}`;
+    item.onclick = () => openChat(chat.id);
+    item.innerHTML = `
+      <div class="chat-av-wrap">
+        <div class="chat-av" style="background:${chat.avatarBg || chat.avatarBg};color:${chat.avatarColor || '#fff'};font-size:${chat.avatar?.length > 2 ? '20px' : '22px'}">
+          ${chat.avatar}
+        </div>
+        ${onlineBadge || typingBadge}
+      </div>
+      <div class="chat-info">
+        <div class="chat-name">
+          ${chat.name}
+          ${chat.verified ? '<span class="verified">✓</span>' : ''}
+        </div>
+        <div class="chat-preview">${preview}</div>
+      </div>
+      <div class="chat-meta">
+        <div class="chat-time ${timeClass}">${chat.lastMessage?.time || ''}</div>
+        ${chat.unread > 0 ? `<div class="unread-count ${badgeClass}">${chat.unread}</div>` : pinIcon}
+      </div>
+    `;
+    list.appendChild(item);
+  });
+  
+  if (filtered.length === 0) {
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <div class="empty-title">Natija topilmadi</div>
+        <div class="empty-text">Boshqa so'z bilan qidirib ko'ring</div>
+      </div>
+    `;
+  }
+}
+
+function switchTab(btn, filter) {
+  document.querySelectorAll('.cl-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = filter;
+  renderChatList();
+}
+
+function toggleSearch() {
+  const search = document.getElementById('global-search');
+  const input = document.getElementById('search-input');
+  if (search.style.display === 'none') {
+    search.style.display = 'flex';
+    input.focus();
+  } else {
+    search.style.display = 'none';
+    searchQuery = '';
+    input.value = '';
+    renderChatList();
+  }
+}
+
+function clearSearch() {
+  const input = document.getElementById('search-input');
+  input.value = '';
+  searchQuery = '';
+  input.focus();
+  renderChatList();
+}
+
+function filterChats(val) {
+  searchQuery = val;
+  renderChatList();
+  
+  // Highlight matches
+  if (val) {
+    document.querySelectorAll('.chat-name, .chat-preview').forEach(el => {
+      const text = el.textContent;
+      const regex = new RegExp(`(${val})`, 'gi');
+      if (regex.test(text)) {
+        el.innerHTML = text.replace(regex, '<span class="highlight">$1</span>');
+      }
+    });
+  }
+}
+
+// Chat Room Functions
+function openChat(id) {
+  currentChatId = id;
+  const chat = CHATS.find(c => c.id === id);
+  if (!chat) return;
+  
+  // Update header
+  const avEl = document.getElementById('cr-av');
+  avEl.textContent = chat.avatar;
+  avEl.style.background = chat.avatarBg;
+  avEl.style.color = chat.avatarColor || '#fff';
+  
+  document.getElementById('cr-name').textContent = chat.name;
+  
+  const statusEl = document.getElementById('cr-status');
+  if (chat.online) {
+    statusEl.innerHTML = '<span class="online-dot"></span> Onlayn';
+  } else {
+    statusEl.textContent = chat.status || 'Offlayn';
+  }
+  
+  // Render messages
+  renderMessages(chat.messages || []);
+  
+  // Switch screen
+  document.getElementById('screen-list').classList.remove('active');
+  document.getElementById('screen-chat').classList.add('active');
+  
+  // Mark as read
+  chat.unread = 0;
+  renderChatList();
+  
+  setTimeout(() => {
+    scrollToBottom();
+    document.getElementById('msg-input').focus();
+  }, 100);
+}
+
+function closeChat() {
+  document.getElementById('screen-chat').classList.remove('active');
+  document.getElementById('screen-list').classList.add('active');
+  closeReply();
+  closeAttach();
+  closeEmoji();
+  currentChatId = null;
+}
+
+function renderMessages(messages) {
+  const container = document.getElementById('cr-messages');
+  container.innerHTML = '';
+  
+  let lastDate = '';
+  
+  messages.forEach((m, idx) => {
+    // Date separator
+    const date = getMessageDate(m.time);
+    if (date !== lastDate) {
+      container.innerHTML += `<div class="msg-date"><span>${date}</span></div>`;
+      lastDate = date;
+    }
+    
+    container.appendChild(buildMessageElement(m));
+  });
+  
+  // Add typing indicator
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'typing-indicator';
+  typingDiv.id = 'typing-ind';
+  typingDiv.style.display = 'none';
+  typingDiv.innerHTML = `
+    <div class="msg-av-sm" style="background:#1A62D422;color:#1A62D4">B</div>
+    <div class="typing-bubble">
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    </div>
+  `;
+  container.appendChild(typingDiv);
+}
+
+function buildMessageElement(m) {
+  const div = document.createElement('div');
+  div.className = `msg ${m.sent ? 'sent' : 'recv'}`;
+  div.id = `msg-${m.id}`;
+  
+  // Long press for context menu
+  div.addEventListener('touchstart', (e) => startLongPress(e, m.id));
+  div.addEventListener('touchend', endLongPress);
+  div.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    showContextMenu(e, m.id);
+  });
+  
+  let content = '';
+  
+  // Avatar for received messages
+  if (!m.sent) {
+    content += `<div class="msg-av-sm" style="background:${m.avatar || '#ddd'}22;color:${m.avatar || '#666'}">${m.from?.[0] || '?'}</div>`;
+  }
+  
+  content += '<div style="display:flex;flex-direction:column;' + (m.sent ? 'align-items:flex-end;' : '') + '">';
+  
+  // Bubble content based on type
+  if (m.type === 'text') {
+    content += buildTextBubble(m);
+  } else if (m.type === 'image') {
+    content += buildImageBubble(m);
+  } else if (m.type === 'voice') {
+    content += buildVoiceBubble(m);
+  } else if (m.type === 'video') {
+    content += buildVideoBubble(m);
+  } else if (m.type === 'file') {
+    content += buildFileBubble(m);
+  } else if (m.type === 'location') {
+    content += buildLocationBubble(m);
+  }
+  
+  // Reactions
+  if (m.reactions && m.reactions.length > 0) {
+    content += buildReactions(m.reactions, m.sent);
+  }
+  
+  content += '</div>';
+  div.innerHTML = content;
+  
+  return div;
+}
+
+function buildTextBubble(m) {
+  let html = '<div class="bubble">';
+  if (!m.sent && m.from) {
+    html += `<div class="bubble-name" style="color:${m.avatar || '#666'}">${m.from}</div>`;
+  }
+  if (m.replyTo) {
+    html += `<div class="bubble-reply" onclick="scrollToMessage(${m.replyTo.id})">
+      <div class="bubble-reply-name">${m.replyTo.name}</div>
+      <div class="bubble-reply-text">${m.replyTo.text}</div>
+    </div>`;
+  }
+  html += `<div class="bubble-text">${escapeHtml(m.text)}</div>`;
+  html += buildTimeAndTicks(m);
+  html += '</div>';
+  return html;
+}
+
+function buildImageBubble(m) {
+  let html = '<div class="bubble bubble-media">';
+  if (!m.sent && m.from) {
+    html += `<div style="padding:8px 8px 4px;font-size:12px;font-weight:800;color:${m.avatar || '#666'}">${m.from}</div>`;
+  }
+  html += `<div class="bubble-img" onclick="openImageViewer('${m.emoji || '🌿'}', '${m.text || 'Rasm'}')">
+    <div style="width:240px;height:170px;background:linear-gradient(135deg,#1F6B3C,#5CC880);display:flex;align-items:center;justify-content:center;font-size:80px;">
+      ${m.emoji || '🌿'}
+    </div>
+    <div class="img-overlay"><span style="color:#fff;font-size:14px;">👁 Ko'rish</span></div>
+  </div>`;
+  if (m.text) {
+    html += `<div class="bubble-caption">${m.text}</div>`;
+  }
+  html += buildTimeAndTicks(m);
+  html += '</div>';
+  return html;
+}
+
+function buildVoiceBubble(m) {
+  const bars = Array(30).fill(0).map(() => Math.floor(Math.random() * 20 + 4));
+  let html = '<div class="bubble">';
+  if (!m.sent && m.from) {
+    html += `<div class="bubble-name" style="color:${m.avatar || '#666'}">${m.from}</div>`;
+  }
+  html += `<div class="bubble-voice">
+    <button class="voice-play" onclick="toggleVoice(this, '${m.duration}')">▶</button>
+    <div class="voice-waveform">
+      ${bars.map(h => `<div class="voice-bar" style="height:${h}px"></div>`).join('')}
+    </div>
+    <div class="voice-duration">${m.duration}</div>
+  </div>`;
+  html += buildTimeAndTicks(m);
+  html += '</div>';
+  return html;
+}
+
+function buildVideoBubble(m) {
+  let html = '<div class="bubble bubble-media">';
+  if (!m.sent && m.from) {
+    html += `<div style="padding:8px 8px 4px;font-size:12px;font-weight:800;color:${m.avatar || '#666'}">${m.from}</div>`;
+  }
+  html += `<div class="bubble-video" onclick="showToast('🎬 Video ijro etilmoqda')">
+    <div class="video-thumb">
+      <div style="position:absolute;font-size:100px;opacity:.2;">🎬</div>
+      <div class="video-play-icon">▶</div>
+      <div class="video-duration-badge">${m.duration}</div>
+    </div>
+  </div>`;
+  html += buildTimeAndTicks(m);
+  html += '</div>';
+  return html;
+}
+
+function buildFileBubble(m) {
+  let html = '<div class="bubble">';
+  if (!m.sent && m.from) {
+    html += `<div class="bubble-name" style="color:${m.avatar || '#666'}">${m.from}</div>`;
+  }
+  html += `<div class="bubble-file">
+    <div class="file-icon">📄</div>
+    <div class="file-info">
+      <div class="file-name">${m.fileName}</div>
+      <div class="file-meta">
+        <span>${m.fileSize}</span>
+        <span style="color:var(--accent);">⬇️ Yuklab olish</span>
+      </div>
+      <div class="file-progress">
+        <div class="file-progress-bar" style="width:100%"></div>
+      </div>
+    </div>
+  </div>`;
+  html += buildTimeAndTicks(m);
+  html += '</div>';
+  return html;
+}
+
+function buildLocationBubble(m) {
+  let html = '<div class="bubble bubble-media">';
+  if (!m.sent && m.from) {
+    html += `<div style="padding:8px 8px 4px;font-size:12px;font-weight:800;color:${m.avatar || '#666'}">${m.from}</div>`;
+  }
+  html += `<div class="bubble-location" onclick="showToast('🗺️ Xaritada ochilmoqda')">
+    <div class="location-map">
+      <div class="location-pin"></div>
+    </div>
+    <div class="location-info">
+      <div class="location-title">📍 Joylashuv yuborildi</div>
+      <div class="location-address">Toshkent viloyati, Chinoz tumani</div>
+    </div>
+  </div>`;
+  html += buildTimeAndTicks(m);
+  html += '</div>';
+  return html;
+}
+
+function buildTimeAndTicks(m) {
+  let html = `<div class="bubble-time">${m.time}`;
+  if (m.sent) {
+    html += m.read ? 
+      '<span class="read-tick read">✓✓</span>' : 
+      '<span class="read-tick">✓</span>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function buildReactions(reactions, isSent) {
+  const counts = {};
+  reactions.forEach(r => counts[r] = (counts[r] || 0) + 1);
+  
+  let html = '<div class="msg-reactions">';
+  for (const [emoji, count] of Object.entries(counts)) {
+    html += `<div class="reaction-badge" onclick="showToast('${emoji} reaksiya')">${emoji}<span class="reaction-count">${count}</span></div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function getMessageDate(time) {
+  if (time.includes(':')) return 'Bugun';
+  if (time === 'Kecha') return 'Kecha';
+  return time;
+}
+
+// Input Functions
+function onInput(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  
+  const btn = document.getElementById('send-btn');
+  if (el.value.trim()) {
+    btn.textContent = '⬆️';
+    btn.className = 'input-btn send';
+  } else {
+    btn.textContent = '🎤';
+    btn.className = 'input-btn voice';
+  }
+}
+
+function onKeyDown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function onSendBtn() {
+  const input = document.getElementById('msg-input');
+  if (input.value.trim()) {
+    sendMessage();
+  } else {
+    startRecording();
+  }
+}
+
+function sendMessage() {
+  const input = document.getElementById('msg-input');
+  const text = input.value.trim();
+  if (!text || currentChatId === null) return;
+  
+  const chat = CHATS.find(c => c.id === currentChatId);
+  const msg = {
+    id: ++msgIdCounter,
+    from: 'men',
+    type: 'text',
+    text: text,
+    time: getCurrentTime(),
+    sent: true,
+    read: false,
+    reactions: []
+  };
+  
+  if (replyingTo) {
+    msg.replyTo = replyingTo;
+    closeReply();
+  }
+  
+  chat.messages = chat.messages || [];
+  chat.messages.push(msg);
+  chat.lastMessage = {text, sender: 'men', time: msg.time, type: 'text', read: false};
+  
+  addMessageToUI(msg);
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('send-btn').textContent = '🎤';
+  document.getElementById('send-btn').className = 'input-btn voice';
+  
+  simulateReply(chat);
+}
+
+function addMessageToUI(msg) {
+  const container = document.getElementById('cr-messages');
+  const typingInd = document.getElementById('typing-ind');
+  const el = buildMessageElement(msg);
+  container.insertBefore(el, typingInd);
+  scrollToBottom();
+}
+
+function simulateReply(chat) {
+  const typingInd = document.getElementById('typing-ind');
+  typingInd.style.display = 'flex';
+  scrollToBottom();
+  
+  const members = [
+    {name:'Behruz', avatar:'#1A62D4'},
+    {name:'Dilshod', avatar:'#7C3AED'},
+    {name:'Sardor', avatar:'#059669'}
+  ];
+  const member = members[Math.floor(Math.random() * members.length)];
+  
+  const replies = [
+    "Yaxshi fikr! 👍",
+    "Qo'shilaman, to'g'ri aytdingiz",
+    "Rahmat axborot uchun 🙏",
+    "Bu juda foydali ma'lumot!",
+    "Tushundim, men ham sinab ko'raman",
+    "AgroMind haqiqatan ham foydali 🌾",
+    "Ha, bu mavsum uchun juda muhim",
+    "Ofarin! 🌱"
+  ];
+  
+  setTimeout(() => {
+    typingInd.style.display = 'none';
+    const reply = {
+      id: ++msgIdCounter,
+      from: member.name,
+      avatar: member.avatar,
+      type: 'text',
+      text: replies[Math.floor(Math.random() * replies.length)],
+      time: getCurrentTime(),
+      sent: false,
+      reactions: []
+    };
+    
+    chat.messages.push(reply);
+    chat.lastMessage = {text: reply.text, sender: member.name, time: reply.time, type: 'text'};
+    chat.unread = (chat.unread || 0) + 1;
+    
+    if (currentChatId === chat.id) {
+      addMessageToUI(reply);
+      // Mark as read after 2 seconds
+      setTimeout(() => {
+        reply.read = true;
+        renderMessages(chat.messages);
+      }, 2000);
+    }
+    
+    renderChatList();
+    showToast(`📩 Yangi xabar: ${member.name}`);
+  }, 1500 + Math.random() * 1500);
+}
+
+// Voice Recording
+function startRecording() {
+  isRecording = true;
+  recordSeconds = 0;
+  
+  document.getElementById('normal-input').style.display = 'none';
+  document.getElementById('voice-record-bar').classList.add('active');
+  
+  // Generate visualizer bars
+  const vis = document.getElementById('visualizer');
+  vis.innerHTML = Array(20).fill(0).map(() => 
+    `<div class="record-bar" style="height:${Math.random() * 30 + 10}px"></div>`
+  ).join('');
+  
+  updateRecordTimer();
+  recordTimer = setInterval(() => {
+    recordSeconds++;
+    updateRecordTimer();
+    // Animate bars
+    document.querySelectorAll('.record-bar').forEach(bar => {
+      bar.style.height = (Math.random() * 40 + 10) + 'px';
+    });
+    if (recordSeconds >= 300) cancelRecording(); // 5 min limit
+  }, 1000);
+}
+
+function updateRecordTimer() {
+  const m = Math.floor(recordSeconds / 60);
+  const s = recordSeconds % 60;
+  document.getElementById('record-timer').textContent = 
+    `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+function cancelRecording() {
+  clearInterval(recordTimer);
+  isRecording = false;
+  document.getElementById('voice-record-bar').classList.remove('active');
+  document.getElementById('normal-input').style.display = 'flex';
+  showToast('❌ Yozib olish bekor qilindi');
+}
+
+function sendVoice() {
+  const duration = document.getElementById('record-timer').textContent;
+  clearInterval(recordTimer);
+  isRecording = false;
+  
+  document.getElementById('voice-record-bar').classList.remove('active');
+  document.getElementById('normal-input').style.display = 'flex';
+  
+  const msg = {
+    id: ++msgIdCounter,
+    from: 'men',
+    type: 'voice',
+    duration: duration,
+    time: getCurrentTime(),
+    sent: true,
+    read: false,
+    reactions: []
+  };
+  
+  const chat = CHATS.find(c => c.id === currentChatId);
+  chat.messages.push(msg);
+  addMessageToUI(msg);
+  simulateReply(chat);
+}
+
+function toggleVoice(btn, duration) {
+  const isPlaying = btn.classList.contains('playing');
+  const waveform = btn.parentElement.querySelector('.voice-waveform');
+  const bars = waveform.querySelectorAll('.voice-bar');
+  
+  if (isPlaying) {
+    btn.classList.remove('playing');
+    btn.textContent = '▶';
+    bars.forEach(b => b.classList.remove('active'));
+  } else {
+    // Stop others
+    document.querySelectorAll('.voice-play.playing').forEach(b => {
+      b.classList.remove('playing');
+      b.textContent = '▶';
+    });
+    document.querySelectorAll('.voice-bar.active').forEach(b => b.classList.remove('active'));
+    
+    btn.classList.add('playing');
+    btn.textContent = '⏸';
+    
+    // Animate waveform
+    let i = 0;
+    const interval = setInterval(() => {
+      if (!btn.classList.contains('playing')) {
+        clearInterval(interval);
+        return;
+      }
+      if (i > 0) bars[i-1].classList.remove('active');
+      if (i < bars.length) {
+        bars[i].classList.add('active');
+        i++;
+      } else {
+        i = 0;
+      }
+    }, 100);
+    
+    // Auto stop after duration
+    const [min, sec] = duration.split(':').map(Number);
+    const totalMs = (min * 60 + sec) * 1000;
+    setTimeout(() => {
+      if (btn.classList.contains('playing')) {
+        btn.classList.remove('playing');
+        btn.textContent = '▶';
+        bars.forEach(b => b.classList.remove('active'));
+      }
+    }, totalMs);
+  }
+}
+
+// Reply Functions
+function startReply(msgId) {
+  const chat = CHATS.find(c => c.id === currentChatId);
+  const msg = chat.messages.find(m => m.id === msgId);
+  if (!msg) return;
+  
+  replyingTo = {
+    id: msgId,
+    name: msg.sent ? 'Siz' : msg.from,
+    text: msg.type === 'text' ? msg.text : 
+          msg.type === 'image' ? '📷 Rasm' :
+          msg.type === 'voice' ? '🎤 Ovozli xabar' :
+          msg.type === 'file' ? '📎 ' + msg.fileName : 'Xabar'
+  };
+  
+  document.getElementById('reply-bar-label').textContent = 
+    msg.sent ? 'O'zingizga javob' : `${msg.from}ga javob`;
+  document.getElementById('reply-bar-preview').textContent = replyingTo.text;
+  document.getElementById('reply-bar').classList.add('visible');
+  document.getElementById('msg-input').focus();
+}
+
+function closeReply() {
+  replyingTo = null;
+  document.getElementById('reply-bar').classList.remove('visible');
+}
+
+// Attachment Functions
+function toggleAttach() {
+  attachOpen = !attachOpen;
+  document.getElementById('attach-menu').classList.toggle('open', attachOpen);
+  if (attachOpen) closeEmoji();
+}
+
+function closeAttach() {
+  attachOpen = false;
+  document.getElementById('attach-menu').classList.remove('open');
+}
+
+function attachAction(type) {
+  closeAttach();
+  const chat = CHATS.find(c => c.id === currentChatId);
+  let msg;
+  
+  switch(type) {
+    case 'photo':
+    case 'camera':
+      msg = {
+        id: ++msgIdCounter,
+        from: 'men',
+        type: 'image',
+        emoji: '📸',
+        text: '',
+        time: getCurrentTime(),
+        sent: true,
+        read: false,
+        reactions: []
+      };
+      break;
+    case 'video':
+      msg = {
+        id: ++msgIdCounter,
+        from: 'men',
+        type: 'video',
+        duration: '0:15',
+        time: getCurrentTime(),
+        sent: true,
+        read: false,
+        reactions: []
+      };
+      break;
+    case 'file':
+      msg = {
+        id: ++msgIdCounter,
+        from: 'men',
+        type: 'file',
+        fileName: 'Hujjat.pdf',
+        fileSize: '1.2 MB',
+        time: getCurrentTime(),
+        sent: true,
+        read: false,
+        reactions: []
+      };
+      break;
+    case 'location':
+      msg = {
+        id: ++msgIdCounter,
+        from: 'men',
+        type: 'location',
+        time: getCurrentTime(),
+        sent: true,
+        read: false,
+        reactions: []
+      };
+      break;
+    case 'contact':
+      showToast('👤 Kontakt yuborildi');
+      return;
+    case 'poll':
+      showToast('📊 So\'rovnoma yaratildi');
+      return;
+    case 'agro':
+      showToast('🌾 Agro ma\'lumot yuborildi');
+      return;
+  }
+  
+  if (msg) {
+    chat.messages.push(msg);
+    addMessageToUI(msg);
+    simulateReply(chat);
+  }
+}
+
+// Emoji Functions
+function toggleEmoji() {
+  emojiOpen = !emojiOpen;
+  document.getElementById('emoji-panel').classList.toggle('open', emojiOpen);
+  if (emojiOpen) {
+    closeAttach();
+    renderEmojiGrid('smileys');
+  }
+}
+
+function closeEmoji() {
+  emojiOpen = false;
+  document.getElementById('emoji-panel').classList.remove('open');
+}
+
+function switchEmojiCat(btn, cat) {
+  document.querySelectorAll('.emoji-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderEmojiGrid(cat);
+}
+
+function renderEmojiGrid(cat) {
+  const emojis = cat === 'recent' ? recentEmojis : (EMOJIS[cat] || EMOJIS.smileys);
+  const grid = document.getElementById('emoji-grid');
+  
+  if (cat === 'recent' && emojis.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">Hali ishlatilmagan</div>';
+    return;
+  }
+  
+  grid.innerHTML = emojis.map(e => 
+    `<button class="emoji-cell" onclick="insertEmoji('${e}')">${e}</button>`
+  ).join('');
+}
+
+function insertEmoji(emoji) {
+  const input = document.getElementById('msg-input');
+  input.value += emoji;
+  input.focus();
+  onInput(input);
+  
+  // Add to recent
+  if (!recentEmojis.includes(emoji)) {
+    recentEmojis.unshift(emoji);
+    if (recentEmojis.length > 32) recentEmojis.pop();
+    localStorage.setItem('recentEmojis', JSON.stringify(recentEmojis));
+  }
+}
+
+function updateRecentEmojis() {
+  EMOJIS.recent = recentEmojis;
+}
+
+// Reaction Functions
+function startLongPress(e, msgId) {
+  longPressTimer = setTimeout(() => {
+    showReactionPopup(e, msgId);
+  }, 600);
+}
+
+function endLongPress() {
+  clearTimeout(longPressTimer);
+}
+
+function showReactionPopup(e, msgId) {
+  activeReactionMsgId = msgId;
+  const popup = document.getElementById('reaction-popup');
+  const rect = e.target.closest('.msg').getBoundingClientRect();
+  
+  popup.style.top = Math.max(80, rect.top - 70) + 'px';
+  popup.style.left = '50%';
+  popup.style.transform = 'translateX(-50%)';
+  popup.classList.add('visible');
+  
+  setTimeout(() => {
+    document.addEventListener('click', hideReactionPopup, {once: true});
+  }, 100);
+}
+
+function hideReactionPopup() {
+  document.getElementById('reaction-popup').classList.remove('visible');
+}
+
+function addReaction(emoji) {
+  hideReactionPopup();
+  if (!activeReactionMsgId || currentChatId === null) return;
+  
+  const chat = CHATS.find(c => c.id === currentChatId);
+  const msg = chat.messages.find(m => m.id === activeReactionMsgId);
+  if (msg) {
+    msg.reactions = msg.reactions || [];
+    msg.reactions.push(emoji);
+    renderMessages(chat.messages);
+    showToast(`${emoji} reaksiya qo'shildi`);
+  }
+}
+
+// Context Menu
+function showContextMenu(e, msgId) {
+  const menu = document.getElementById('context-menu');
+  menu.style.left = Math.min(e.clientX, window.innerWidth - 200) + 'px';
+  menu.style.top = Math.min(e.clientY, window.innerHeight - 250) + 'px';
+  menu.classList.add('visible');
+  menu.dataset.msgId = msgId;
+  
+  setTimeout(() => {
+    document.addEventListener('click', hideContextMenu, {once: true});
+  }, 100);
+}
+
+function hideContextMenu() {
+  document.getElementById('context-menu').classList.remove('visible');
+}
+
+function contextAction(action) {
+  const menu = document.getElementById('context-menu');
+  const msgId = parseInt(menu.dataset.msgId);
+  hideContextMenu();
+  
+  switch(action) {
+    case 'reply':
+      startReply(msgId);
+      break;
+    case 'copy':
+      showToast('📋 Nusxa olindi');
+      break;
+    case 'forward':
+      showToast('↪️ Yuborish ochildi');
+      break;
+    case 'pin':
+      showToast('📌 Xabar prikrepitildi');
+      break;
+    case 'delete':
+      if (confirm('Xabarni o\'chirishni xohlaysizmi?')) {
+        const chat = CHATS.find(c => c.id === currentChatId);
+        chat.messages = chat.messages.filter(m => m.id !== msgId);
+        renderMessages(chat.messages);
+        showToast('🗑️ Xabar o\'chirildi');
+      }
+      break;
+  }
+}
+
+// Image Viewer
+function openImageViewer(emoji, title) {
+  const viewer = document.getElementById('img-viewer');
+  document.getElementById('viewer-img').src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%231F6B3C' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='120' text-anchor='middle' dy='.3em'%3E${emoji}%3C/text%3E%3C/svg%3E`;
+  document.getElementById('viewer-title').textContent = title;
+  document.getElementById('viewer-date').textContent = getCurrentTime();
+  viewer.classList.add('open');
+}
+
+function closeImgViewer() {
+  document.getElementById('img-viewer').classList.remove('open');
+}
+
+// Modal Functions
+function openModal() {
+  document.getElementById('modal-ov').classList.add('open');
+  document.getElementById('modal-sh').classList.add('open');
+  renderContacts();
+}
+
+function closeModal() {
+  document.getElementById('modal-ov').classList.remove('open');
+  document.getElementById('modal-sh').classList.remove('open');
+}
+
+function renderContacts() {
+  const list = document.getElementById('contact-list');
+  list.innerHTML = CONTACTS.map(c => `
+    <div class="contact-item" onclick="startChat(${c.id})">
+      <div class="contact-av" style="background:${c.color}22;color:${c.color}">
+        ${c.avatar}
+        ${c.online ? '<div class="contact-status"></div>' : ''}
+      </div>
+      <div class="contact-info">
+        <div class="contact-name">${c.name}</div>
+        <div class="contact-sub">
+          <span>${c.region}</span>
+          <span>•</span>
+          <span>${c.crop}</span>
+        </div>
+      </div>
+      <button class="contact-action">💬</button>
+    </div>
+  `).join('');
+}
+
+function filterContacts(val) {
+  const items = document.querySelectorAll('.contact-item');
+  items.forEach(item => {
+    const name = item.querySelector('.contact-name').textContent.toLowerCase();
+    item.style.display = name.includes(val.toLowerCase()) ? '' : 'none';
+  });
+}
+
+function startChat(contactId) {
+  closeModal();
+  const contact = CONTACTS.find(c => c.id === contactId);
+  
+  // Check if chat exists
+  let chat = CHATS.find(c => c.name === contact.name);
+  if (!chat) {
+    chat = {
+      id: CHATS.length,
+      type: 'personal',
+      name: contact.name,
+      avatar: contact.avatar,
+      avatarBg: contact.color + '22',
+      avatarColor: contact.color,
+      status: contact.online ? 'Onlayn' : 'Offlayn',
+      online: contact.online,
+      unread: 0,
+      messages: []
+    };
+    CHATS.push(chat);
+  }
+  
+  openChat(chat.id);
+}
+
+// Utility Functions
+function scrollToBottom(smooth = false) {
+  const container = document.getElementById('cr-messages');
+  if (smooth) {
+    container.scrollTo({top: container.scrollHeight, behavior: 'smooth'});
+  } else {
+    container.scrollTop = container.scrollHeight;
+  }
+  document.getElementById('scroll-bottom').classList.remove('visible');
+}
+
+function onMessagesScroll() {
+  const container = document.getElementById('cr-messages');
+  const btn = document.getElementById('scroll-bottom');
+  const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 100;
+  
+  if (!isNearBottom) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+}
+
+function getCurrentTime() {
+  const now = new Date();
+  return now.getHours().toString().padStart(2, '0') + ':' + 
+         now.getMinutes().toString().padStart(2, '0');
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function showToast(text) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-text').textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function goPage(url) {
+  showToast(`🔄 ${url} ga o'tish...`);
+  // In real app: window.location.href = url;
+}
+
+function startCall(type) {
+  showToast(type === 'audio' ? '📞 Ovozli qo\'ng\'iroq...' : '📹 Video qo\'ng\'iroq...');
+}
+
+function toggleChatMenu() {
+  showToast('📋 Chat menyusi');
+}
+
+function onInputFocus() {
+  closeAttach();
+  closeEmoji();
+}
+
+function scrollToUnread() {
+  showToast('↓ Yangi xabarlarga o\'tish');
+}
+
+function scrollToMessage(msgId) {
+  const el = document.getElementById(`msg-${msgId}`);
+  if (el) {
+    el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    el.style.animation = 'pulse 1s';
+    setTimeout(() => el.style.animation = '', 1000);
+  }
+}
+
+// Service Worker for offline support
+const swCode = `
+self.addEventListener('install', e => self.skipWaiting());
+self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
+`;
+
+// Create blob URL for service worker
+try {
+  const swBlob = new Blob([swCode], {type: 'application/javascript'});
+  const swUrl = URL.createObjectURL(swBlob);
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register(swUrl).catch(() => {});
+  }
+} catch(e) {}
+</script>
+</body>
+</html>
